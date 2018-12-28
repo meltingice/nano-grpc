@@ -63,6 +63,17 @@ function deserialize_nano_AccountInfoResponse(buffer_arg) {
   return Accounts_pb.AccountInfoResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_AccountKeyRequest(arg) {
+  if (!(arg instanceof Accounts_pb.AccountKeyRequest)) {
+    throw new Error('Expected argument of type nano.AccountKeyRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_AccountKeyRequest(buffer_arg) {
+  return Accounts_pb.AccountKeyRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_nano_AccountRequest(arg) {
   if (!(arg instanceof Accounts_pb.AccountRequest)) {
     throw new Error('Expected argument of type nano.AccountRequest');
@@ -162,6 +173,17 @@ var NanoRPCService = exports.NanoRPCService = {
     responseType: Accounts_pb.AccountResponse,
     requestSerialize: serialize_nano_AccountCreateRequest,
     requestDeserialize: deserialize_nano_AccountCreateRequest,
+    responseSerialize: serialize_nano_AccountResponse,
+    responseDeserialize: deserialize_nano_AccountResponse,
+  },
+  accountGet: {
+    path: '/nano.NanoRPC/AccountGet',
+    requestStream: false,
+    responseStream: false,
+    requestType: Accounts_pb.AccountKeyRequest,
+    responseType: Accounts_pb.AccountResponse,
+    requestSerialize: serialize_nano_AccountKeyRequest,
+    requestDeserialize: deserialize_nano_AccountKeyRequest,
     responseSerialize: serialize_nano_AccountResponse,
     responseDeserialize: deserialize_nano_AccountResponse,
   },

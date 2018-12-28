@@ -44,3 +44,7 @@ message AccountCreateRequest {
 message AccountResponse {
   string account = 1;
 }
+
+message AccountKeyRequest {
+  string key = 1;
+}

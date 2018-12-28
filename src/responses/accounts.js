@@ -38,7 +38,13 @@ module.exports = client => ({
 
   accountCreate: buildRpc(
     client,
-    req => Object.assign({ action: "account_create" }, req.toObject()),
+    req => ({ action: "account_create", work: req.getWork() }),
+    data => new AccountResponse([data.account])
+  ),
+
+  accountGet: buildRpc(
+    client,
+    req => ({ action: "account_get", key: req.getKey() }),
     data => new AccountResponse([data.account])
   )
 });
