@@ -4,12 +4,14 @@ package nano;
 import 'Accounts.proto';
 import 'Blocks.proto';
 import 'Peers.proto';
+import 'Wallet.proto';
 
 service NanoRPC {
   // Accounts
   rpc AccountBalance (AccountRequest) returns (AccountBalanceResponse) {}
   rpc AccountBlockCount (AccountRequest) returns (AccountBlockCountResponse) {}
-  rpc AccountInfo (AccountInfoRequest) returns (AccountResponse) {}
+  rpc AccountInfo (AccountInfoRequest) returns (AccountInfoResponse) {}
+  rpc AccountCreate (AccountCreateRequest) returns (AccountResponse) {}
 
   // Blocks
   rpc BlockCount (EmptyRequest) returns (BlockCountResponse) {}

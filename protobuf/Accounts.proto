@@ -7,7 +7,7 @@ message AccountRequest {
   string account = 1;
 }
 
-message AccountResponse {
+message AccountInfoResponse {
   string frontier = 1;
   string open_block = 2;
   string representative_block = 3;
@@ -34,4 +34,13 @@ message AccountInfoRequest {
   bool representative = 2;
   bool weight = 3;
   bool pending = 4;
+}
+
+message AccountCreateRequest {
+  string wallet = 1;
+  bool work = 2;
+}
+
+message AccountResponse {
+  string account = 1;
 }

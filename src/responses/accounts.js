@@ -2,6 +2,7 @@ const buildRpc = require("../lib/buildRpc");
 const {
   AccountBalanceResponse,
   AccountBlockCountResponse,
+  AccountInfoResponse,
   AccountResponse
 } = require("../grpc/NanoService_pb");
 
@@ -22,7 +23,7 @@ module.exports = client => ({
     client,
     req => Object.assign({ action: "account_info" }, req.toObject()),
     data =>
-      new AccountResponse([
+      new AccountInfoResponse([
         data.frontier,
         data.open_block,
         data.representative_block,
@@ -33,5 +34,11 @@ module.exports = client => ({
         data.weight,
         data.pending
       ])
+  ),
+
+  accountCreate: buildRpc(
+    client,
+    req => Object.assign({ action: "account_create" }, req.toObject()),
+    data => new AccountResponse([data.account])
   )
 });

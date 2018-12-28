@@ -6,6 +6,7 @@ var NanoService_pb = require('./NanoService_pb.js');
 var Accounts_pb = require('./Accounts_pb.js');
 var Blocks_pb = require('./Blocks_pb.js');
 var Peers_pb = require('./Peers_pb.js');
+var Wallet_pb = require('./Wallet_pb.js');
 
 function serialize_nano_AccountBalanceResponse(arg) {
   if (!(arg instanceof Accounts_pb.AccountBalanceResponse)) {
@@ -29,6 +30,17 @@ function deserialize_nano_AccountBlockCountResponse(buffer_arg) {
   return Accounts_pb.AccountBlockCountResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_AccountCreateRequest(arg) {
+  if (!(arg instanceof Accounts_pb.AccountCreateRequest)) {
+    throw new Error('Expected argument of type nano.AccountCreateRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_AccountCreateRequest(buffer_arg) {
+  return Accounts_pb.AccountCreateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_nano_AccountInfoRequest(arg) {
   if (!(arg instanceof Accounts_pb.AccountInfoRequest)) {
     throw new Error('Expected argument of type nano.AccountInfoRequest');
@@ -38,6 +50,17 @@ function serialize_nano_AccountInfoRequest(arg) {
 
 function deserialize_nano_AccountInfoRequest(buffer_arg) {
   return Accounts_pb.AccountInfoRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_AccountInfoResponse(arg) {
+  if (!(arg instanceof Accounts_pb.AccountInfoResponse)) {
+    throw new Error('Expected argument of type nano.AccountInfoResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_AccountInfoResponse(buffer_arg) {
+  return Accounts_pb.AccountInfoResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_nano_AccountRequest(arg) {
@@ -125,9 +148,20 @@ var NanoRPCService = exports.NanoRPCService = {
     requestStream: false,
     responseStream: false,
     requestType: Accounts_pb.AccountInfoRequest,
-    responseType: Accounts_pb.AccountResponse,
+    responseType: Accounts_pb.AccountInfoResponse,
     requestSerialize: serialize_nano_AccountInfoRequest,
     requestDeserialize: deserialize_nano_AccountInfoRequest,
+    responseSerialize: serialize_nano_AccountInfoResponse,
+    responseDeserialize: deserialize_nano_AccountInfoResponse,
+  },
+  accountCreate: {
+    path: '/nano.NanoRPC/AccountCreate',
+    requestStream: false,
+    responseStream: false,
+    requestType: Accounts_pb.AccountCreateRequest,
+    responseType: Accounts_pb.AccountResponse,
+    requestSerialize: serialize_nano_AccountCreateRequest,
+    requestDeserialize: deserialize_nano_AccountCreateRequest,
     responseSerialize: serialize_nano_AccountResponse,
     responseDeserialize: deserialize_nano_AccountResponse,
   },
