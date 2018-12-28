@@ -98,11 +98,11 @@ proto.nano.BlockCountResponse.deserializeBinaryFromReader = function(msg, reader
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readInt32());
+      var value = /** @type {number} */ (reader.readUint32());
       msg.setCount(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readInt32());
+      var value = /** @type {number} */ (reader.readUint32());
       msg.setUnchecked(value);
       break;
     default:
@@ -136,14 +136,14 @@ proto.nano.BlockCountResponse.serializeBinaryToWriter = function(message, writer
   var f = undefined;
   f = message.getCount();
   if (f !== 0) {
-    writer.writeInt32(
+    writer.writeUint32(
       1,
       f
     );
   }
   f = message.getUnchecked();
   if (f !== 0) {
-    writer.writeInt32(
+    writer.writeUint32(
       2,
       f
     );
@@ -152,7 +152,7 @@ proto.nano.BlockCountResponse.serializeBinaryToWriter = function(message, writer
 
 
 /**
- * optional int32 count = 1;
+ * optional uint32 count = 1;
  * @return {number}
  */
 proto.nano.BlockCountResponse.prototype.getCount = function() {
@@ -167,7 +167,7 @@ proto.nano.BlockCountResponse.prototype.setCount = function(value) {
 
 
 /**
- * optional int32 unchecked = 2;
+ * optional uint32 unchecked = 2;
  * @return {number}
  */
 proto.nano.BlockCountResponse.prototype.getUnchecked = function() {

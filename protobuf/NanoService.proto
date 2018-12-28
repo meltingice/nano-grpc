@@ -8,6 +8,8 @@ import 'Peers.proto';
 service NanoRPC {
   // Accounts
   rpc AccountBalance (AccountRequest) returns (AccountBalanceResponse) {}
+  rpc AccountBlockCount (AccountRequest) returns (AccountBlockCountResponse) {}
+  rpc AccountInfo (AccountInfoRequest) returns (AccountResponse) {}
 
   // Blocks
   rpc BlockCount (EmptyRequest) returns (BlockCountResponse) {}

@@ -5,11 +5,6 @@ module.exports = client => ({
   blockCount: buildRpc(
     client,
     () => ({ action: "block_count" }),
-    data => {
-      const reply = new BlockCountResponse();
-      reply.setCount(data.count);
-      reply.setUnchecked(data.unchecked);
-      return reply;
-    }
+    data => new BlockCountResponse([data.count, data.unchecked])
   )
 });
