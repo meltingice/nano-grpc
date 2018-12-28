@@ -21,21 +21,17 @@ module.exports = client => ({
   accountInfo: buildRpc(
     client,
     req => Object.assign({ action: "account_info" }, req.toObject()),
-    data => {
-      const reply = new AccountResponse([
+    data =>
+      new AccountResponse([
         data.frontier,
         data.open_block,
         data.representative_block,
         data.balance,
         [data.modified_timestamp, 0],
-        data.block_count
-      ]);
-
-      reply.setRepresentative(data.representative);
-      reply.setWeight(data.weight);
-      reply.setPending(data.pending);
-
-      return reply;
-    }
+        data.block_count,
+        data.representative,
+        data.weight,
+        data.pending
+      ])
   )
 });
