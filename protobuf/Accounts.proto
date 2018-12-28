@@ -81,3 +81,17 @@ message AccountHistoryResponse {
 message AccountListResponse {
   repeated string accounts = 1;
 }
+
+message AccountMoveRequest {
+  string wallet = 1;
+  string source = 2;
+  repeated string accounts = 3;
+}
+
+message AccountMoveResponse {
+  bool moved = 1;
+}
+
+message AccountKeyResponse {
+  string key = 1;
+}
