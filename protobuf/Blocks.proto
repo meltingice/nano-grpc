@@ -1,6 +1,15 @@
 syntax = "proto3";
 package nano;
 
+enum BlockType {
+  OPEN = 0;
+  SEND = 1;
+  RECEIVE = 2;
+  CHANGE = 3;
+  STATE = 4;
+  EPOCH = 5;
+}
+
 message BlockCountResponse {
   uint32 count = 1;
   uint32 unchecked = 2;

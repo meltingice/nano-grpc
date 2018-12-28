@@ -3,7 +3,9 @@ const {
   AccountBalanceResponse,
   AccountBlockCountResponse,
   AccountInfoResponse,
-  AccountResponse
+  AccountResponse,
+  AccountHistoryResponse,
+  BlockType
 } = require("../grpc/NanoService_pb");
 
 module.exports = client => ({
@@ -46,5 +48,34 @@ module.exports = client => ({
     client,
     req => ({ action: "account_get", key: req.getKey() }),
     data => new AccountResponse([data.account])
+  ),
+
+  accountHistory: buildRpc(
+    client,
+    req => ({
+      action: "account_history",
+      account: req.getAccount(),
+      count: req.getCount(),
+      raw: req.getRaw(),
+      head: req.getHead() ? req.getHead() : undefined
+    }),
+    data =>
+      new AccountHistoryResponse([
+        data.history.map(entry => [
+          BlockType[entry.type.toUpperCase()],
+          entry.account,
+          entry.amount,
+          entry.hash,
+
+          entry.representative,
+          entry.link,
+          entry.balance,
+          entry.previous,
+          entry.subtype ? BlockType[entry.subtype.toUpperCase()] : null,
+          entry.work,
+          entry.signature
+        ]),
+        data.previous
+      ])
   )
 });

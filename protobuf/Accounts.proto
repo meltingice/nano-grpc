@@ -2,6 +2,7 @@ syntax = "proto3";
 package nano;
 
 import "google/protobuf/timestamp.proto";
+import 'Blocks.proto';
 
 message AccountRequest {
   string account = 1;
@@ -47,4 +48,32 @@ message AccountResponse {
 
 message AccountKeyRequest {
   string key = 1;
+}
+
+message AccountHistoryRequest {
+  string account = 1;
+  int32 count = 2;
+
+  bool raw = 3;
+  string head = 4;
+}
+
+message AccountHistoryResponse {
+  message HistoryEntry {
+    BlockType type = 1;
+    string account = 2;
+    string amount = 3;
+    string hash = 4;
+
+    string representative = 5;
+    string link = 6;
+    string balance = 7;
+    string previous = 8;
+    BlockType subtype = 9;
+    string work = 10;
+    string signature = 11;
+  }
+
+  repeated HistoryEntry history = 1;
+  string previous = 2;
 }

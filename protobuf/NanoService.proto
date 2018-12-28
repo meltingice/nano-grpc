@@ -13,6 +13,7 @@ service NanoRPC {
   rpc AccountInfo (AccountInfoRequest) returns (AccountInfoResponse) {}
   rpc AccountCreate (AccountCreateRequest) returns (AccountResponse) {}
   rpc AccountGet (AccountKeyRequest) returns (AccountResponse) {}
+  rpc AccountHistory (AccountHistoryRequest) returns (AccountHistoryResponse) {}
 
   // Blocks
   rpc BlockCount (EmptyRequest) returns (BlockCountResponse) {}
