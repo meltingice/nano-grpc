@@ -77,3 +77,7 @@ message AccountHistoryResponse {
   repeated HistoryEntry history = 1;
   string previous = 2;
 }
+
+message AccountListResponse {
+  repeated string accounts = 1;
+}

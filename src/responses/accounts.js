@@ -5,7 +5,8 @@ const {
   AccountInfoResponse,
   AccountResponse,
   AccountHistoryResponse,
-  BlockType
+  BlockType,
+  AccountListResponse
 } = require("../grpc/NanoService_pb");
 
 module.exports = client => ({
@@ -77,5 +78,14 @@ module.exports = client => ({
         ]),
         data.previous
       ])
+  ),
+
+  accountList: buildRpc(
+    client,
+    req => ({
+      action: "account_list",
+      wallet: req.getWallet()
+    }),
+    data => new AccountListResponse([data.accounts])
   )
 });

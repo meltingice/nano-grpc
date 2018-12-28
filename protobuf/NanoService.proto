@@ -14,6 +14,7 @@ service NanoRPC {
   rpc AccountCreate (AccountCreateRequest) returns (AccountResponse) {}
   rpc AccountGet (AccountKeyRequest) returns (AccountResponse) {}
   rpc AccountHistory (AccountHistoryRequest) returns (AccountHistoryResponse) {}
+  rpc AccountList (WalletRequest) returns (AccountListResponse) {}
 
   // Blocks
   rpc BlockCount (EmptyRequest) returns (BlockCountResponse) {}

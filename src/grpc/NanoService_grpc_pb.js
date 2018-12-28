@@ -96,6 +96,17 @@ function deserialize_nano_AccountKeyRequest(buffer_arg) {
   return Accounts_pb.AccountKeyRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_AccountListResponse(arg) {
+  if (!(arg instanceof Accounts_pb.AccountListResponse)) {
+    throw new Error('Expected argument of type nano.AccountListResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_AccountListResponse(buffer_arg) {
+  return Accounts_pb.AccountListResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_nano_AccountRequest(arg) {
   if (!(arg instanceof Accounts_pb.AccountRequest)) {
     throw new Error('Expected argument of type nano.AccountRequest');
@@ -149,6 +160,17 @@ function serialize_nano_PeersResponse(arg) {
 
 function deserialize_nano_PeersResponse(buffer_arg) {
   return Peers_pb.PeersResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_WalletRequest(arg) {
+  if (!(arg instanceof Wallet_pb.WalletRequest)) {
+    throw new Error('Expected argument of type nano.WalletRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_WalletRequest(buffer_arg) {
+  return Wallet_pb.WalletRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 
@@ -219,6 +241,17 @@ var NanoRPCService = exports.NanoRPCService = {
     requestDeserialize: deserialize_nano_AccountHistoryRequest,
     responseSerialize: serialize_nano_AccountHistoryResponse,
     responseDeserialize: deserialize_nano_AccountHistoryResponse,
+  },
+  accountList: {
+    path: '/nano.NanoRPC/AccountList',
+    requestStream: false,
+    responseStream: false,
+    requestType: Wallet_pb.WalletRequest,
+    responseType: Accounts_pb.AccountListResponse,
+    requestSerialize: serialize_nano_WalletRequest,
+    requestDeserialize: deserialize_nano_WalletRequest,
+    responseSerialize: serialize_nano_AccountListResponse,
+    responseDeserialize: deserialize_nano_AccountListResponse,
   },
   // Blocks
   blockCount: {
