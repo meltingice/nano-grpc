@@ -95,3 +95,12 @@ message AccountMoveResponse {
 message AccountKeyResponse {
   string key = 1;
 }
+
+message AccountRemoveRequest {
+  string wallet = 1;
+  string account = 2;
+}
+
+message AccountRemoveResponse {
+  bool removed = 1;
+}

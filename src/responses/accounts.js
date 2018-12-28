@@ -8,7 +8,8 @@ const {
   BlockType,
   AccountListResponse,
   AccountMoveResponse,
-  AccountKeyResponse
+  AccountKeyResponse,
+  AccountRemoveResponse
 } = require("../grpc/NanoService_pb");
 
 module.exports = client => ({
@@ -101,5 +102,15 @@ module.exports = client => ({
     client,
     req => ({ action: "account_key", account: req.getAccount() }),
     data => new AccountKeyResponse([data.key])
+  ),
+
+  accountRemove: buildRpc(
+    client,
+    req => ({
+      action: "account_remove",
+      wallet: req.getWallet(),
+      account: req.getAccount()
+    }),
+    data => new AccountRemoveResponse([data.removed === "1" ? true : false])
   )
 });

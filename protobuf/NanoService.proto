@@ -17,6 +17,7 @@ service NanoRPC {
   rpc AccountList (WalletRequest) returns (AccountListResponse) {}
   rpc AccountMove (AccountMoveRequest) returns (AccountMoveResponse) {}
   rpc AccountPublicKey (AccountRequest) returns (AccountKeyResponse) {}
+  rpc AccountRemove (AccountRemoveRequest) returns (AccountRemoveResponse) {}
 
   // Blocks
   rpc BlockCount (EmptyRequest) returns (BlockCountResponse) {}

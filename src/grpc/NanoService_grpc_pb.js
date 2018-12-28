@@ -140,6 +140,28 @@ function deserialize_nano_AccountMoveResponse(buffer_arg) {
   return Accounts_pb.AccountMoveResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_AccountRemoveRequest(arg) {
+  if (!(arg instanceof Accounts_pb.AccountRemoveRequest)) {
+    throw new Error('Expected argument of type nano.AccountRemoveRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_AccountRemoveRequest(buffer_arg) {
+  return Accounts_pb.AccountRemoveRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_AccountRemoveResponse(arg) {
+  if (!(arg instanceof Accounts_pb.AccountRemoveResponse)) {
+    throw new Error('Expected argument of type nano.AccountRemoveResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_AccountRemoveResponse(buffer_arg) {
+  return Accounts_pb.AccountRemoveResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_nano_AccountRequest(arg) {
   if (!(arg instanceof Accounts_pb.AccountRequest)) {
     throw new Error('Expected argument of type nano.AccountRequest');
@@ -307,6 +329,17 @@ var NanoRPCService = exports.NanoRPCService = {
     requestDeserialize: deserialize_nano_AccountRequest,
     responseSerialize: serialize_nano_AccountKeyResponse,
     responseDeserialize: deserialize_nano_AccountKeyResponse,
+  },
+  accountRemove: {
+    path: '/nano.NanoRPC/AccountRemove',
+    requestStream: false,
+    responseStream: false,
+    requestType: Accounts_pb.AccountRemoveRequest,
+    responseType: Accounts_pb.AccountRemoveResponse,
+    requestSerialize: serialize_nano_AccountRemoveRequest,
+    requestDeserialize: deserialize_nano_AccountRemoveRequest,
+    responseSerialize: serialize_nano_AccountRemoveResponse,
+    responseDeserialize: deserialize_nano_AccountRemoveResponse,
   },
   // Blocks
   blockCount: {
