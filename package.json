@@ -1,0 +1,21 @@
+{
+  "name": "nano-grpc",
+  "version": "0.0.1",
+  "description": "A gRPC server for the Nano cryptocurrency node",
+  "main": "src/index.js",
+  "dependencies": {
+    "google-protobuf": "^3.6.1",
+    "grpc": "^1.17.0",
+    "nano-ipc": "^1.0.1",
+    "protobufjs": "^6.8.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build":
+      "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./src/grpc/ --grpc_out=./src/grpc/ --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` --proto_path=./protobuf ./protobuf/*.proto",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src"
+  },
+  "author": "Ryan LeFevre <meltingice8917@gmail.com>",
+  "license": "MIT"
+}

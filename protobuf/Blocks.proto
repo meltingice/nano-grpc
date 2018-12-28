@@ -1,0 +1,7 @@
+syntax = "proto3";
+package nano;
+
+message BlockCountResponse {
+  int32 count = 1;
+  int32 unchecked = 2;
+}

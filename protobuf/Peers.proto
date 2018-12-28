@@ -1,0 +1,11 @@
+syntax = "proto3";
+package nano;
+
+message Peer {
+  string address = 1;
+  string version = 2;
+}
+
+message PeersResponse {
+  repeated Peer peers = 1;
+}
