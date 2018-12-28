@@ -1,0 +1,11 @@
+syntax = "proto3";
+package nano;
+
+message AccountRequest {
+  string account = 1;
+}
+
+message AccountBalanceResponse {
+  string balance = 1;
+  string pending = 2;
+}

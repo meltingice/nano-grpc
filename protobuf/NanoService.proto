@@ -1,11 +1,20 @@
 syntax = "proto3";
 package nano;
 
-import "google/protobuf/empty.proto";
+import 'Accounts.proto';
 import 'Blocks.proto';
 import 'Peers.proto';
 
 service NanoRPC {
-  rpc BlockCount (google.protobuf.Empty) returns (BlockCountResponse) {}
-  rpc Peers (google.protobuf.Empty) returns (PeersResponse) {}
+  // Accounts
+  rpc AccountBalance (AccountRequest) returns (AccountBalanceResponse) {}
+
+  // Blocks
+  rpc BlockCount (EmptyRequest) returns (BlockCountResponse) {}
+
+  // Peers
+  rpc Peers (EmptyRequest) returns (PeersResponse) {}
+}
+
+message EmptyRequest {
 }

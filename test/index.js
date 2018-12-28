@@ -1,5 +1,4 @@
 const grpc = require("grpc");
-const { Empty } = require("google-protobuf/google/protobuf/empty_pb.js");
 
 const messages = require("../src/grpc/NanoService_pb");
 const services = require("../src/grpc/NanoService_grpc_pb");
@@ -9,7 +8,8 @@ function main() {
     "localhost:50051",
     grpc.credentials.createInsecure()
   );
-  var request = new Empty();
+
+  var request = new messages.EmptyRequest();
 
   client.blockCount(request, function(err, response) {
     if (err) console.log(err);
