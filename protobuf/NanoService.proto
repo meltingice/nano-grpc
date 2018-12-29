@@ -20,6 +20,7 @@ service NanoRPC {
   rpc AccountRemove (AccountRemoveRequest) returns (AccountRemoveResponse) {}
   rpc AccountRepresentative (AccountRequest) returns (AccountResponse) {}
   rpc AccountRepresentativeSet (AccountRepresentativeRequest) returns (BlockResponse) {}
+  rpc AccountWeight (AccountRequest) returns (WeightResponse) {}
 
   // Blocks
   rpc BlockCount (EmptyRequest) returns (BlockCountResponse) {}

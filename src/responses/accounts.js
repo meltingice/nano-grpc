@@ -10,7 +10,8 @@ const {
   AccountMoveResponse,
   AccountKeyResponse,
   AccountRemoveResponse,
-  BlockResponse
+  BlockResponse,
+  WeightResponse
 } = require("../grpc/NanoService_pb");
 
 module.exports = client => ({
@@ -126,5 +127,11 @@ module.exports = client => ({
     req =>
       Object.assign({ action: "account_representative_set" }, req.toObject()),
     data => new BlockResponse([data.block])
+  ),
+
+  accountWeight: buildRpc(
+    client,
+    req => ({ action: "account_weight", account: req.getAccount() }),
+    data => new WeightResponse([data.weight])
   )
 });

@@ -250,6 +250,17 @@ function deserialize_nano_WalletRequest(buffer_arg) {
   return Wallet_pb.WalletRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_WeightResponse(arg) {
+  if (!(arg instanceof Accounts_pb.WeightResponse)) {
+    throw new Error('Expected argument of type nano.WeightResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_WeightResponse(buffer_arg) {
+  return Accounts_pb.WeightResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 
 var NanoRPCService = exports.NanoRPCService = {
   // Accounts
@@ -384,6 +395,17 @@ var NanoRPCService = exports.NanoRPCService = {
     requestDeserialize: deserialize_nano_AccountRepresentativeRequest,
     responseSerialize: serialize_nano_BlockResponse,
     responseDeserialize: deserialize_nano_BlockResponse,
+  },
+  accountWeight: {
+    path: '/nano.NanoRPC/AccountWeight',
+    requestStream: false,
+    responseStream: false,
+    requestType: Accounts_pb.AccountRequest,
+    responseType: Accounts_pb.WeightResponse,
+    requestSerialize: serialize_nano_AccountRequest,
+    requestDeserialize: deserialize_nano_AccountRequest,
+    responseSerialize: serialize_nano_WeightResponse,
+    responseDeserialize: deserialize_nano_WeightResponse,
   },
   // Blocks
   blockCount: {

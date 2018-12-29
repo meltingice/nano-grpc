@@ -112,3 +112,7 @@ message AccountRepresentativeRequest {
 
   string work = 4;
 }
+
+message WeightResponse {
+  string weight = 1;
+}
