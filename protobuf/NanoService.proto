@@ -18,6 +18,8 @@ service NanoRPC {
   rpc AccountMove (AccountMoveRequest) returns (AccountMoveResponse) {}
   rpc AccountPublicKey (AccountRequest) returns (AccountKeyResponse) {}
   rpc AccountRemove (AccountRemoveRequest) returns (AccountRemoveResponse) {}
+  rpc AccountRepresentative (AccountRequest) returns (AccountResponse) {}
+  rpc AccountRepresentativeSet (AccountRepresentativeRequest) returns (BlockResponse) {}
 
   // Blocks
   rpc BlockCount (EmptyRequest) returns (BlockCountResponse) {}

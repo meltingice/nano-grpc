@@ -6,7 +6,11 @@ const client = new NanoIPC.Client();
 const responses = require("./responses")(client);
 
 async function main() {
-  await client.connect();
+  try {
+    await client.connect();
+  } catch (e) {
+    console.warn("IPC not available. Attempting to start anyways...");
+  }
 
   const server = new grpc.Server();
   server.addService(services.NanoRPCService, responses);

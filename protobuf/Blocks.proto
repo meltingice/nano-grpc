@@ -10,6 +10,10 @@ enum BlockType {
   EPOCH = 5;
 }
 
+message BlockResponse {
+  string block = 1;
+}
+
 message BlockCountResponse {
   uint32 count = 1;
   uint32 unchecked = 2;

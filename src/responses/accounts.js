@@ -9,7 +9,8 @@ const {
   AccountListResponse,
   AccountMoveResponse,
   AccountKeyResponse,
-  AccountRemoveResponse
+  AccountRemoveResponse,
+  BlockResponse
 } = require("../grpc/NanoService_pb");
 
 module.exports = client => ({
@@ -112,5 +113,18 @@ module.exports = client => ({
       account: req.getAccount()
     }),
     data => new AccountRemoveResponse([data.removed === "1" ? true : false])
+  ),
+
+  accountRepresentative: buildRpc(
+    client,
+    req => ({ action: "account_representative", account: req.getAccount() }),
+    data => new AccountResponse([data.representative])
+  ),
+
+  accountRepresentativeSet: buildRpc(
+    client,
+    req =>
+      Object.assign({ action: "account_representative_set" }, req.toObject()),
+    data => new BlockResponse([data.block])
   )
 });

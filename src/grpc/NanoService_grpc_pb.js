@@ -162,6 +162,17 @@ function deserialize_nano_AccountRemoveResponse(buffer_arg) {
   return Accounts_pb.AccountRemoveResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_AccountRepresentativeRequest(arg) {
+  if (!(arg instanceof Accounts_pb.AccountRepresentativeRequest)) {
+    throw new Error('Expected argument of type nano.AccountRepresentativeRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_AccountRepresentativeRequest(buffer_arg) {
+  return Accounts_pb.AccountRepresentativeRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_nano_AccountRequest(arg) {
   if (!(arg instanceof Accounts_pb.AccountRequest)) {
     throw new Error('Expected argument of type nano.AccountRequest');
@@ -193,6 +204,17 @@ function serialize_nano_BlockCountResponse(arg) {
 
 function deserialize_nano_BlockCountResponse(buffer_arg) {
   return Blocks_pb.BlockCountResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_BlockResponse(arg) {
+  if (!(arg instanceof Blocks_pb.BlockResponse)) {
+    throw new Error('Expected argument of type nano.BlockResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_BlockResponse(buffer_arg) {
+  return Blocks_pb.BlockResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_nano_EmptyRequest(arg) {
@@ -340,6 +362,28 @@ var NanoRPCService = exports.NanoRPCService = {
     requestDeserialize: deserialize_nano_AccountRemoveRequest,
     responseSerialize: serialize_nano_AccountRemoveResponse,
     responseDeserialize: deserialize_nano_AccountRemoveResponse,
+  },
+  accountRepresentative: {
+    path: '/nano.NanoRPC/AccountRepresentative',
+    requestStream: false,
+    responseStream: false,
+    requestType: Accounts_pb.AccountRequest,
+    responseType: Accounts_pb.AccountResponse,
+    requestSerialize: serialize_nano_AccountRequest,
+    requestDeserialize: deserialize_nano_AccountRequest,
+    responseSerialize: serialize_nano_AccountResponse,
+    responseDeserialize: deserialize_nano_AccountResponse,
+  },
+  accountRepresentativeSet: {
+    path: '/nano.NanoRPC/AccountRepresentativeSet',
+    requestStream: false,
+    responseStream: false,
+    requestType: Accounts_pb.AccountRepresentativeRequest,
+    responseType: Blocks_pb.BlockResponse,
+    requestSerialize: serialize_nano_AccountRepresentativeRequest,
+    requestDeserialize: deserialize_nano_AccountRepresentativeRequest,
+    responseSerialize: serialize_nano_BlockResponse,
+    responseDeserialize: deserialize_nano_BlockResponse,
   },
   // Blocks
   blockCount: {
