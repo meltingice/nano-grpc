@@ -109,4 +109,6 @@ message AccountRepresentativeRequest {
   string wallet = 1;
   string account = 2;
   string representative = 3;
+
+  string work = 4;
 }

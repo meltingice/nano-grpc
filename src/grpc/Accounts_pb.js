@@ -3403,7 +3403,8 @@ proto.nano.AccountRepresentativeRequest.toObject = function(includeInstance, msg
   var f, obj = {
     wallet: jspb.Message.getFieldWithDefault(msg, 1, ""),
     account: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    representative: jspb.Message.getFieldWithDefault(msg, 3, "")
+    representative: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    work: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -3451,6 +3452,10 @@ proto.nano.AccountRepresentativeRequest.deserializeBinaryFromReader = function(m
     case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setRepresentative(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setWork(value);
       break;
     default:
       reader.skipField();
@@ -3502,6 +3507,13 @@ proto.nano.AccountRepresentativeRequest.serializeBinaryToWriter = function(messa
       f
     );
   }
+  f = message.getWork();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
 };
 
 
@@ -3547,6 +3559,21 @@ proto.nano.AccountRepresentativeRequest.prototype.getRepresentative = function()
 /** @param {string} value */
 proto.nano.AccountRepresentativeRequest.prototype.setRepresentative = function(value) {
   jspb.Message.setField(this, 3, value);
+};
+
+
+/**
+ * optional string work = 4;
+ * @return {string}
+ */
+proto.nano.AccountRepresentativeRequest.prototype.getWork = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/** @param {string} value */
+proto.nano.AccountRepresentativeRequest.prototype.setWork = function(value) {
+  jspb.Message.setField(this, 4, value);
 };
 
 
