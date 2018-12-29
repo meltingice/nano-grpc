@@ -1,6 +1,7 @@
 const buildRpc = require("../lib/buildRpc");
 const {
   AccountBalanceResponse,
+  AccountsBalancesResponse,
   AccountBlockCountResponse,
   AccountInfoResponse,
   AccountResponse,
@@ -133,5 +134,23 @@ module.exports = client => ({
     client,
     req => ({ action: "account_weight", account: req.getAccount() }),
     data => new WeightResponse([data.weight])
+  ),
+
+  accountsBalances: buildRpc(
+    client,
+    req => ({ action: "accounts_balances", accounts: req.getAccountsList() }),
+    data => {
+      const reply = new AccountsBalancesResponse();
+      Object.entries(data.balances).forEach(entry => {
+        reply
+          .getBalancesMap()
+          .set(
+            entry[0],
+            new AccountBalanceResponse([entry[1].balance, entry[1].pending])
+          );
+      });
+
+      return reply;
+    }
   )
 });

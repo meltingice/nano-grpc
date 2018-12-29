@@ -21,6 +21,7 @@ service NanoRPC {
   rpc AccountRepresentative (AccountRequest) returns (AccountResponse) {}
   rpc AccountRepresentativeSet (AccountRepresentativeRequest) returns (BlockResponse) {}
   rpc AccountWeight (AccountRequest) returns (WeightResponse) {}
+  rpc AccountsBalances (AccountsRequest) returns (AccountsBalancesResponse) {}
 
   // Blocks
   rpc BlockCount (EmptyRequest) returns (BlockCountResponse) {}

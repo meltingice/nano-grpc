@@ -116,3 +116,11 @@ message AccountRepresentativeRequest {
 message WeightResponse {
   string weight = 1;
 }
+
+message AccountsRequest {
+  repeated string accounts = 1;
+}
+
+message AccountsBalancesResponse {
+  map<string, AccountBalanceResponse> balances = 1;
+}
