@@ -316,6 +316,17 @@ function deserialize_nano_PeersResponse(buffer_arg) {
   return Peers_pb.PeersResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_ValidResponse(arg) {
+  if (!(arg instanceof Accounts_pb.ValidResponse)) {
+    throw new Error('Expected argument of type nano.ValidResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_ValidResponse(buffer_arg) {
+  return Accounts_pb.ValidResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_nano_WalletRequest(arg) {
   if (!(arg instanceof Wallet_pb.WalletRequest)) {
     throw new Error('Expected argument of type nano.WalletRequest');
@@ -527,6 +538,17 @@ var NanoRPCService = exports.NanoRPCService = {
     requestDeserialize: deserialize_nano_AccountsPendingRequest,
     responseSerialize: serialize_nano_AccountsPendingResponse,
     responseDeserialize: deserialize_nano_AccountsPendingResponse,
+  },
+  validateAccountNumber: {
+    path: '/nano.NanoRPC/ValidateAccountNumber',
+    requestStream: false,
+    responseStream: false,
+    requestType: Accounts_pb.AccountRequest,
+    responseType: Accounts_pb.ValidResponse,
+    requestSerialize: serialize_nano_AccountRequest,
+    requestDeserialize: deserialize_nano_AccountRequest,
+    responseSerialize: serialize_nano_ValidResponse,
+    responseDeserialize: deserialize_nano_ValidResponse,
   },
   // Blocks
   blockCount: {

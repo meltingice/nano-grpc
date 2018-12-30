@@ -161,3 +161,7 @@ message AccountsPendingResponse {
 
   map<string, PendingBlockAccount> accounts = 1;
 }
+
+message ValidResponse {
+  bool valid = 1;
+}

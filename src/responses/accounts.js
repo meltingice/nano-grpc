@@ -16,7 +16,8 @@ const {
   WeightResponse,
   AccountsResponse,
   FrontiersResponse,
-  AccountsPendingResponse
+  AccountsPendingResponse,
+  ValidResponse
 } = require("../grpc/NanoService_pb");
 
 module.exports = client => ({
@@ -201,5 +202,11 @@ module.exports = client => ({
 
       return reply;
     }
+  ),
+
+  validateAccountNumber: buildRpc(
+    client,
+    req => ({ action: "validate_account_number", account: req.getAccount() }),
+    data => new ValidResponse([data.valid === "1" ? true : false])
   )
 });

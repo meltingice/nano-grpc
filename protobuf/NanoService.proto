@@ -25,6 +25,7 @@ service NanoRPC {
   rpc AccountsCreate (AccountsCreateRequest) returns (AccountsResponse) {}
   rpc AccountsFrontiers (AccountsRequest) returns (FrontiersResponse) {}
   rpc AccountsPending (AccountsPendingRequest) returns (AccountsPendingResponse) {}
+  rpc ValidateAccountNumber (AccountRequest) returns (ValidResponse) {}
 
   // Blocks
   rpc BlockCount (EmptyRequest) returns (BlockCountResponse) {}
