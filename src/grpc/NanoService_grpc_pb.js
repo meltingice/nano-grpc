@@ -272,6 +272,17 @@ function deserialize_nano_EmptyRequest(buffer_arg) {
   return NanoService_pb.EmptyRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_FrontiersResponse(arg) {
+  if (!(arg instanceof Accounts_pb.FrontiersResponse)) {
+    throw new Error('Expected argument of type nano.FrontiersResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_FrontiersResponse(buffer_arg) {
+  return Accounts_pb.FrontiersResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_nano_PeersResponse(arg) {
   if (!(arg instanceof Peers_pb.PeersResponse)) {
     throw new Error('Expected argument of type nano.PeersResponse');
@@ -472,6 +483,17 @@ var NanoRPCService = exports.NanoRPCService = {
     requestDeserialize: deserialize_nano_AccountsCreateRequest,
     responseSerialize: serialize_nano_AccountsResponse,
     responseDeserialize: deserialize_nano_AccountsResponse,
+  },
+  accountsFrontiers: {
+    path: '/nano.NanoRPC/AccountsFrontiers',
+    requestStream: false,
+    responseStream: false,
+    requestType: Accounts_pb.AccountsRequest,
+    responseType: Accounts_pb.FrontiersResponse,
+    requestSerialize: serialize_nano_AccountsRequest,
+    requestDeserialize: deserialize_nano_AccountsRequest,
+    responseSerialize: serialize_nano_FrontiersResponse,
+    responseDeserialize: deserialize_nano_FrontiersResponse,
   },
   // Blocks
   blockCount: {

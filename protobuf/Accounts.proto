@@ -134,3 +134,7 @@ message AccountsCreateRequest {
   int32 count = 2;
   bool work = 3;
 }
+
+message FrontiersResponse {
+  map<string, string> frontiers = 1;
+}

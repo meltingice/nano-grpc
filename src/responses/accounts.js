@@ -1,4 +1,5 @@
 const buildRpc = require("../lib/buildRpc");
+const buildMap = require("../lib/buildMap");
 const {
   AccountBalanceResponse,
   AccountsBalancesResponse,
@@ -13,7 +14,8 @@ const {
   AccountRemoveResponse,
   BlockResponse,
   WeightResponse,
-  AccountsResponse
+  AccountsResponse,
+  FrontiersResponse
 } = require("../grpc/NanoService_pb");
 
 module.exports = client => ({
@@ -142,15 +144,11 @@ module.exports = client => ({
     req => ({ action: "accounts_balances", accounts: req.getAccountsList() }),
     data => {
       const reply = new AccountsBalancesResponse();
-      Object.entries(data.balances).forEach(entry => {
-        reply
-          .getBalancesMap()
-          .set(
-            entry[0],
-            new AccountBalanceResponse([entry[1].balance, entry[1].pending])
-          );
-      });
-
+      buildMap(
+        reply.getBalancesMap(),
+        data.balances,
+        value => new AccountBalanceResponse([value.balance, value.pending])
+      );
       return reply;
     }
   ),
@@ -159,5 +157,15 @@ module.exports = client => ({
     client,
     req => Object.assign({ action: "accounts_create" }, req.toObject()),
     data => new AccountsResponse([data.accounts])
+  ),
+
+  accountsFrontiers: buildRpc(
+    client,
+    req => ({ action: "accounts_frontiers", accounts: req.getAccountsList() }),
+    data => {
+      const reply = new FrontiersResponse();
+      buildMap(reply.getFrontiersMap(), data.frontiers, value => value);
+      return reply;
+    }
   )
 });
