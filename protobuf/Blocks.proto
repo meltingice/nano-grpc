@@ -10,8 +10,24 @@ enum BlockType {
   EPOCH = 5;
 }
 
+message Block {
+  BlockType type = 1;
+  string account = 2;
+  string previous = 3;
+  string representative = 4;
+  string balance = 5;
+  string link = 6;
+  string link_as_account = 7;
+  string signature = 8;
+  string work = 9;
+}
+
+message BlockRequest {
+  string hash = 1;
+}
+
 message BlockResponse {
-  string block = 1;
+  string hash = 1;
 }
 
 message BlockCountResponse {
