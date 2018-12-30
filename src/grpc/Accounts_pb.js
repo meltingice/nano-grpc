@@ -32,7 +32,9 @@ goog.exportSymbol('proto.nano.AccountRepresentativeRequest', null, global);
 goog.exportSymbol('proto.nano.AccountRequest', null, global);
 goog.exportSymbol('proto.nano.AccountResponse', null, global);
 goog.exportSymbol('proto.nano.AccountsBalancesResponse', null, global);
+goog.exportSymbol('proto.nano.AccountsCreateRequest', null, global);
 goog.exportSymbol('proto.nano.AccountsRequest', null, global);
+goog.exportSymbol('proto.nano.AccountsResponse', null, global);
 goog.exportSymbol('proto.nano.WeightResponse', null, global);
 
 /**
@@ -3896,6 +3898,169 @@ proto.nano.AccountsRequest.prototype.clearAccountsList = function() {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.nano.AccountsResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.nano.AccountsResponse.repeatedFields_, null);
+};
+goog.inherits(proto.nano.AccountsResponse, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.nano.AccountsResponse.displayName = 'proto.nano.AccountsResponse';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.nano.AccountsResponse.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.nano.AccountsResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.nano.AccountsResponse.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.nano.AccountsResponse} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.nano.AccountsResponse.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    accountsList: jspb.Message.getRepeatedField(msg, 1)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.nano.AccountsResponse}
+ */
+proto.nano.AccountsResponse.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.nano.AccountsResponse;
+  return proto.nano.AccountsResponse.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.nano.AccountsResponse} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.nano.AccountsResponse}
+ */
+proto.nano.AccountsResponse.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addAccounts(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.nano.AccountsResponse.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.nano.AccountsResponse.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.nano.AccountsResponse} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.nano.AccountsResponse.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getAccountsList();
+  if (f.length > 0) {
+    writer.writeRepeatedString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * repeated string accounts = 1;
+ * @return {!Array.<string>}
+ */
+proto.nano.AccountsResponse.prototype.getAccountsList = function() {
+  return /** @type {!Array.<string>} */ (jspb.Message.getRepeatedField(this, 1));
+};
+
+
+/** @param {!Array.<string>} value */
+proto.nano.AccountsResponse.prototype.setAccountsList = function(value) {
+  jspb.Message.setField(this, 1, value || []);
+};
+
+
+/**
+ * @param {!string} value
+ * @param {number=} opt_index
+ */
+proto.nano.AccountsResponse.prototype.addAccounts = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 1, value, opt_index);
+};
+
+
+proto.nano.AccountsResponse.prototype.clearAccountsList = function() {
+  this.setAccountsList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.nano.AccountsBalancesResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -4026,6 +4191,204 @@ proto.nano.AccountsBalancesResponse.prototype.getBalancesMap = function(opt_noLa
 
 proto.nano.AccountsBalancesResponse.prototype.clearBalancesMap = function() {
   this.getBalancesMap().clear();
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.nano.AccountsCreateRequest = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.nano.AccountsCreateRequest, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.nano.AccountsCreateRequest.displayName = 'proto.nano.AccountsCreateRequest';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.nano.AccountsCreateRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.nano.AccountsCreateRequest.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.nano.AccountsCreateRequest} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.nano.AccountsCreateRequest.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    wallet: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    count: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    work: jspb.Message.getFieldWithDefault(msg, 3, false)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.nano.AccountsCreateRequest}
+ */
+proto.nano.AccountsCreateRequest.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.nano.AccountsCreateRequest;
+  return proto.nano.AccountsCreateRequest.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.nano.AccountsCreateRequest} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.nano.AccountsCreateRequest}
+ */
+proto.nano.AccountsCreateRequest.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setWallet(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setCount(value);
+      break;
+    case 3:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setWork(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.nano.AccountsCreateRequest.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.nano.AccountsCreateRequest.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.nano.AccountsCreateRequest} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.nano.AccountsCreateRequest.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getWallet();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getCount();
+  if (f !== 0) {
+    writer.writeInt32(
+      2,
+      f
+    );
+  }
+  f = message.getWork();
+  if (f) {
+    writer.writeBool(
+      3,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string wallet = 1;
+ * @return {string}
+ */
+proto.nano.AccountsCreateRequest.prototype.getWallet = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.nano.AccountsCreateRequest.prototype.setWallet = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional int32 count = 2;
+ * @return {number}
+ */
+proto.nano.AccountsCreateRequest.prototype.getCount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/** @param {number} value */
+proto.nano.AccountsCreateRequest.prototype.setCount = function(value) {
+  jspb.Message.setField(this, 2, value);
+};
+
+
+/**
+ * optional bool work = 3;
+ * Note that Boolean fields may be set to 0/1 when serialized from a Java server.
+ * You should avoid comparisons like {@code val === true/false} in those cases.
+ * @return {boolean}
+ */
+proto.nano.AccountsCreateRequest.prototype.getWork = function() {
+  return /** @type {boolean} */ (jspb.Message.getFieldWithDefault(this, 3, false));
+};
+
+
+/** @param {boolean} value */
+proto.nano.AccountsCreateRequest.prototype.setWork = function(value) {
+  jspb.Message.setField(this, 3, value);
 };
 
 

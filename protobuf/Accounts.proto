@@ -121,6 +121,16 @@ message AccountsRequest {
   repeated string accounts = 1;
 }
 
+message AccountsResponse {
+  repeated string accounts = 1;
+}
+
 message AccountsBalancesResponse {
   map<string, AccountBalanceResponse> balances = 1;
+}
+
+message AccountsCreateRequest {
+  string wallet = 1;
+  int32 count = 2;
+  bool work = 3;
 }

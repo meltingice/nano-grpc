@@ -206,6 +206,17 @@ function deserialize_nano_AccountsBalancesResponse(buffer_arg) {
   return Accounts_pb.AccountsBalancesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_AccountsCreateRequest(arg) {
+  if (!(arg instanceof Accounts_pb.AccountsCreateRequest)) {
+    throw new Error('Expected argument of type nano.AccountsCreateRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_AccountsCreateRequest(buffer_arg) {
+  return Accounts_pb.AccountsCreateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_nano_AccountsRequest(arg) {
   if (!(arg instanceof Accounts_pb.AccountsRequest)) {
     throw new Error('Expected argument of type nano.AccountsRequest');
@@ -215,6 +226,17 @@ function serialize_nano_AccountsRequest(arg) {
 
 function deserialize_nano_AccountsRequest(buffer_arg) {
   return Accounts_pb.AccountsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_AccountsResponse(arg) {
+  if (!(arg instanceof Accounts_pb.AccountsResponse)) {
+    throw new Error('Expected argument of type nano.AccountsResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_AccountsResponse(buffer_arg) {
+  return Accounts_pb.AccountsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_nano_BlockCountResponse(arg) {
@@ -439,6 +461,17 @@ var NanoRPCService = exports.NanoRPCService = {
     requestDeserialize: deserialize_nano_AccountsRequest,
     responseSerialize: serialize_nano_AccountsBalancesResponse,
     responseDeserialize: deserialize_nano_AccountsBalancesResponse,
+  },
+  accountsCreate: {
+    path: '/nano.NanoRPC/AccountsCreate',
+    requestStream: false,
+    responseStream: false,
+    requestType: Accounts_pb.AccountsCreateRequest,
+    responseType: Accounts_pb.AccountsResponse,
+    requestSerialize: serialize_nano_AccountsCreateRequest,
+    requestDeserialize: deserialize_nano_AccountsCreateRequest,
+    responseSerialize: serialize_nano_AccountsResponse,
+    responseDeserialize: deserialize_nano_AccountsResponse,
   },
   // Blocks
   blockCount: {
