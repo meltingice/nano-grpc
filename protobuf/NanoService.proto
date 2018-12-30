@@ -30,6 +30,7 @@ service NanoRPC {
   // Blocks
   rpc BlockCount (EmptyRequest) returns (BlockCountResponse) {}
   rpc BlockGet (BlockRequest) returns (Block) {}
+  rpc BlocksGet (BlocksRequest) returns (BlocksResponse) {}
 
   // Peers
   rpc Peers (EmptyRequest) returns (PeersResponse) {}

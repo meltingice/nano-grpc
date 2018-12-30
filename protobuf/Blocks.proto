@@ -26,6 +26,10 @@ message BlockRequest {
   string hash = 1;
 }
 
+message BlocksRequest {
+  repeated string hashes = 1;
+}
+
 message BlockResponse {
   string hash = 1;
 }
@@ -33,4 +37,8 @@ message BlockResponse {
 message BlockCountResponse {
   uint32 count = 1;
   uint32 unchecked = 2;
+}
+
+message BlocksResponse {
+  map<string, Block> blocks = 1;
 }
