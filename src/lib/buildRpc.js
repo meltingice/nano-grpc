@@ -15,7 +15,7 @@ module.exports = (client, buildRequest, buildResponse) => {
       });
     }
 
-    const reply = buildResponse(data);
+    const reply = buildResponse(data, call.request);
 
     callback(null, reply);
   };

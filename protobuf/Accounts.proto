@@ -138,3 +138,26 @@ message AccountsCreateRequest {
 message FrontiersResponse {
   map<string, string> frontiers = 1;
 }
+
+message AccountsPendingRequest {
+  repeated string accounts = 1;
+  int32 count = 2;
+
+  string threshold = 3;
+  bool source = 4;
+  bool include_active = 5;
+}
+
+message AccountsPendingResponse {
+  message PendingBlockAccount {
+    repeated PendingBlock blocks = 1;
+  }
+
+  message PendingBlock {
+    string hash = 1;
+    string amount = 2;
+    string source = 3;
+  }
+
+  map<string, PendingBlockAccount> accounts = 1;
+}

@@ -217,6 +217,28 @@ function deserialize_nano_AccountsCreateRequest(buffer_arg) {
   return Accounts_pb.AccountsCreateRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_AccountsPendingRequest(arg) {
+  if (!(arg instanceof Accounts_pb.AccountsPendingRequest)) {
+    throw new Error('Expected argument of type nano.AccountsPendingRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_AccountsPendingRequest(buffer_arg) {
+  return Accounts_pb.AccountsPendingRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_AccountsPendingResponse(arg) {
+  if (!(arg instanceof Accounts_pb.AccountsPendingResponse)) {
+    throw new Error('Expected argument of type nano.AccountsPendingResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_AccountsPendingResponse(buffer_arg) {
+  return Accounts_pb.AccountsPendingResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_nano_AccountsRequest(arg) {
   if (!(arg instanceof Accounts_pb.AccountsRequest)) {
     throw new Error('Expected argument of type nano.AccountsRequest');
@@ -494,6 +516,17 @@ var NanoRPCService = exports.NanoRPCService = {
     requestDeserialize: deserialize_nano_AccountsRequest,
     responseSerialize: serialize_nano_FrontiersResponse,
     responseDeserialize: deserialize_nano_FrontiersResponse,
+  },
+  accountsPending: {
+    path: '/nano.NanoRPC/AccountsPending',
+    requestStream: false,
+    responseStream: false,
+    requestType: Accounts_pb.AccountsPendingRequest,
+    responseType: Accounts_pb.AccountsPendingResponse,
+    requestSerialize: serialize_nano_AccountsPendingRequest,
+    requestDeserialize: deserialize_nano_AccountsPendingRequest,
+    responseSerialize: serialize_nano_AccountsPendingResponse,
+    responseDeserialize: deserialize_nano_AccountsPendingResponse,
   },
   // Blocks
   blockCount: {

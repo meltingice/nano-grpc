@@ -15,7 +15,8 @@ const {
   BlockResponse,
   WeightResponse,
   AccountsResponse,
-  FrontiersResponse
+  FrontiersResponse,
+  AccountsPendingResponse
 } = require("../grpc/NanoService_pb");
 
 module.exports = client => ({
@@ -165,6 +166,39 @@ module.exports = client => ({
     data => {
       const reply = new FrontiersResponse();
       buildMap(reply.getFrontiersMap(), data.frontiers, value => value);
+      return reply;
+    }
+  ),
+
+  accountsPending: buildRpc(
+    client,
+    req => ({
+      action: "accounts_pending",
+      accounts: req.getAccountsList(),
+      count: req.getCount(),
+      threshold: req.getThreshold() ? req.getThreshold() : undefined,
+      source: req.getSource(),
+      include_active: req.getIncludeActive()
+    }),
+    (data, req) => {
+      const { PendingBlockAccount } = AccountsPendingResponse;
+      const reply = new AccountsPendingResponse();
+      buildMap(reply.getAccountsMap(), data.blocks, value => {
+        if (req.getSource()) {
+          return new PendingBlockAccount([
+            Object.entries(value).map(entry => [
+              entry[0],
+              entry[1].amount,
+              entry[1].source
+            ])
+          ]);
+        } else if (req.getThreshold()) {
+          return new PendingBlockAccount([Object.entries(value)]);
+        } else {
+          return new PendingBlockAccount([value.map(hash => [hash])]);
+        }
+      });
+
       return reply;
     }
   )
