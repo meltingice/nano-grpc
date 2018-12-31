@@ -4,8 +4,24 @@ const {
   BlockCountResponse,
   Block,
   BlockType,
-  BlocksResponse
+  BlocksResponse,
+  BlocksInfoResponse
 } = require("../grpc/NanoService_pb");
+
+const contentsToBlockArray = contents => {
+  const data = JSON.parse(contents);
+  return [
+    BlockType[data.type.toUpperCase()],
+    data.account,
+    data.previous,
+    data.representative,
+    data.balance,
+    data.link,
+    data.link_as_account,
+    data.signature,
+    data.work
+  ];
+};
 
 module.exports = client => ({
   blockCount: buildRpc(
@@ -17,20 +33,7 @@ module.exports = client => ({
   blockGet: buildRpc(
     client,
     req => ({ action: "block", hash: req.getHash() }),
-    resp => {
-      const data = JSON.parse(resp.contents);
-      return new Block([
-        BlockType[data.type.toUpperCase()],
-        data.account,
-        data.previous,
-        data.representative,
-        data.balance,
-        data.link,
-        data.link_as_account,
-        data.signature,
-        data.work
-      ]);
-    }
+    data => new Block(contentsToBlockArray(data.contents))
   ),
 
   blocksGet: buildRpc(
@@ -52,6 +55,36 @@ module.exports = client => ({
           data.work
         ]);
       });
+
+      return reply;
+    }
+  ),
+
+  blocksInfo: buildRpc(
+    client,
+    req => ({
+      action: "blocks_info",
+      hashes: req.getHashesList(),
+      pending: req.getPending(),
+      source: req.getSource(),
+      balance: req.getBalance()
+    }),
+    data => {
+      const { BlockWithInfo } = BlocksInfoResponse;
+      const reply = new BlocksInfoResponse();
+      buildMap(
+        reply.getBlocksMap(),
+        data.blocks,
+        block =>
+          new BlockWithInfo([
+            contentsToBlockArray(block.contents),
+            block.block_account,
+            block.amount,
+            block.pending,
+            block.source_account,
+            block.balance
+          ])
+      );
 
       return reply;
     }

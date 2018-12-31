@@ -42,3 +42,23 @@ message BlockCountResponse {
 message BlocksResponse {
   map<string, Block> blocks = 1;
 }
+
+message BlocksInfoRequest {
+  repeated string hashes = 1;
+  bool pending = 2;
+  bool source = 3;
+  bool balance = 4;
+}
+
+message BlocksInfoResponse {
+  message BlockWithInfo {
+    Block block = 1;
+    string block_account = 2;
+    string amount = 3;
+    string pending = 4;
+    string source_account = 5;
+    string balance = 6;
+  }
+
+  map<string, BlockWithInfo> blocks = 1;
+}
