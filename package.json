@@ -16,7 +16,7 @@
     "build":
       "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./src/grpc/ --grpc_out=./src/grpc/ --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` --proto_path=./protobuf ./protobuf/*.proto",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src"
+    "start": "node index.js"
   },
   "author": "Ryan LeFevre <meltingice8917@gmail.com>",
   "license": "MIT"
