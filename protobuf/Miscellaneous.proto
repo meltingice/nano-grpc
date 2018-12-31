@@ -1,0 +1,13 @@
+syntax = "proto3";
+package nano;
+
+message DeterministicKeyRequest {
+  string seed = 1;
+  int32 index = 2;
+}
+
+message DeterministicKeyResponse {
+  string private = 1;
+  string public = 2;
+  string account = 3;
+}

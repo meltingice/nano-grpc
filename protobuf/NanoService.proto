@@ -6,6 +6,7 @@ import 'Blocks.proto';
 import 'Bootstrap.proto';
 import 'Confirmation.proto';
 import 'Delegators.proto';
+import 'Miscellaneous.proto';
 import 'Peers.proto';
 import 'Wallet.proto';
 
@@ -58,6 +59,9 @@ service NanoRPC {
 
   // Peers
   rpc Peers (EmptyRequest) returns (PeersResponse) {}
+
+  // Miscellaneous
+  rpc DeterministicKey (DeterministicKeyRequest) returns (DeterministicKeyResponse) {}
 }
 
 message EmptyRequest {

@@ -8,6 +8,7 @@ var Blocks_pb = require('./Blocks_pb.js');
 var Bootstrap_pb = require('./Bootstrap_pb.js');
 var Confirmation_pb = require('./Confirmation_pb.js');
 var Delegators_pb = require('./Delegators_pb.js');
+var Miscellaneous_pb = require('./Miscellaneous_pb.js');
 var Peers_pb = require('./Peers_pb.js');
 var Wallet_pb = require('./Wallet_pb.js');
 
@@ -517,6 +518,28 @@ function deserialize_nano_DelegatorsResponse(buffer_arg) {
   return Delegators_pb.DelegatorsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_DeterministicKeyRequest(arg) {
+  if (!(arg instanceof Miscellaneous_pb.DeterministicKeyRequest)) {
+    throw new Error('Expected argument of type nano.DeterministicKeyRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_DeterministicKeyRequest(buffer_arg) {
+  return Miscellaneous_pb.DeterministicKeyRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_DeterministicKeyResponse(arg) {
+  if (!(arg instanceof Miscellaneous_pb.DeterministicKeyResponse)) {
+    throw new Error('Expected argument of type nano.DeterministicKeyResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_DeterministicKeyResponse(buffer_arg) {
+  return Miscellaneous_pb.DeterministicKeyResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_nano_EmptyRequest(arg) {
   if (!(arg instanceof NanoService_pb.EmptyRequest)) {
     throw new Error('Expected argument of type nano.EmptyRequest');
@@ -1008,6 +1031,18 @@ var NanoRPCService = exports.NanoRPCService = {
     requestDeserialize: deserialize_nano_EmptyRequest,
     responseSerialize: serialize_nano_PeersResponse,
     responseDeserialize: deserialize_nano_PeersResponse,
+  },
+  // Miscellaneous
+  deterministicKey: {
+    path: '/nano.NanoRPC/DeterministicKey',
+    requestStream: false,
+    responseStream: false,
+    requestType: Miscellaneous_pb.DeterministicKeyRequest,
+    responseType: Miscellaneous_pb.DeterministicKeyResponse,
+    requestSerialize: serialize_nano_DeterministicKeyRequest,
+    requestDeserialize: deserialize_nano_DeterministicKeyRequest,
+    responseSerialize: serialize_nano_DeterministicKeyResponse,
+    responseDeserialize: deserialize_nano_DeterministicKeyResponse,
   },
 };
 
