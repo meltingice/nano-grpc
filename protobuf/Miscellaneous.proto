@@ -1,6 +1,9 @@
 syntax = "proto3";
 package nano;
 
+message EmptyRequest {
+}
+
 message DeterministicKeyRequest {
   string seed = 1;
   int32 index = 2;

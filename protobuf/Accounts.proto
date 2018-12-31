@@ -135,10 +135,6 @@ message AccountsCreateRequest {
   bool work = 3;
 }
 
-message FrontiersResponse {
-  map<string, string> frontiers = 1;
-}
-
 message AccountsPendingRequest {
   repeated string accounts = 1;
   int32 count = 2;

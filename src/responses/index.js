@@ -4,6 +4,7 @@ const RESPONSES = [
   "bootstrap",
   "confirmation",
   "delegators",
+  "frontiers",
   "miscellaneous",
   "peers"
 ];

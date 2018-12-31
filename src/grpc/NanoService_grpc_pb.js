@@ -2,12 +2,12 @@
 
 'use strict';
 var grpc = require('grpc');
-var NanoService_pb = require('./NanoService_pb.js');
 var Accounts_pb = require('./Accounts_pb.js');
 var Blocks_pb = require('./Blocks_pb.js');
 var Bootstrap_pb = require('./Bootstrap_pb.js');
 var Confirmation_pb = require('./Confirmation_pb.js');
 var Delegators_pb = require('./Delegators_pb.js');
+var Frontiers_pb = require('./Frontiers_pb.js');
 var Miscellaneous_pb = require('./Miscellaneous_pb.js');
 var Peers_pb = require('./Peers_pb.js');
 var Wallet_pb = require('./Wallet_pb.js');
@@ -541,25 +541,36 @@ function deserialize_nano_DeterministicKeyResponse(buffer_arg) {
 }
 
 function serialize_nano_EmptyRequest(arg) {
-  if (!(arg instanceof NanoService_pb.EmptyRequest)) {
+  if (!(arg instanceof Miscellaneous_pb.EmptyRequest)) {
     throw new Error('Expected argument of type nano.EmptyRequest');
   }
   return new Buffer(arg.serializeBinary());
 }
 
 function deserialize_nano_EmptyRequest(buffer_arg) {
-  return NanoService_pb.EmptyRequest.deserializeBinary(new Uint8Array(buffer_arg));
+  return Miscellaneous_pb.EmptyRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_FrontiersRequest(arg) {
+  if (!(arg instanceof Frontiers_pb.FrontiersRequest)) {
+    throw new Error('Expected argument of type nano.FrontiersRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_FrontiersRequest(buffer_arg) {
+  return Frontiers_pb.FrontiersRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_nano_FrontiersResponse(arg) {
-  if (!(arg instanceof Accounts_pb.FrontiersResponse)) {
+  if (!(arg instanceof Frontiers_pb.FrontiersResponse)) {
     throw new Error('Expected argument of type nano.FrontiersResponse');
   }
   return new Buffer(arg.serializeBinary());
 }
 
 function deserialize_nano_FrontiersResponse(buffer_arg) {
-  return Accounts_pb.FrontiersResponse.deserializeBinary(new Uint8Array(buffer_arg));
+  return Frontiers_pb.FrontiersResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_nano_PeersResponse(arg) {
@@ -790,7 +801,7 @@ var NanoRPCService = exports.NanoRPCService = {
     requestStream: false,
     responseStream: false,
     requestType: Accounts_pb.AccountsRequest,
-    responseType: Accounts_pb.FrontiersResponse,
+    responseType: Frontiers_pb.FrontiersResponse,
     requestSerialize: serialize_nano_AccountsRequest,
     requestDeserialize: deserialize_nano_AccountsRequest,
     responseSerialize: serialize_nano_FrontiersResponse,
@@ -867,7 +878,7 @@ var NanoRPCService = exports.NanoRPCService = {
     path: '/nano.NanoRPC/BlockCount',
     requestStream: false,
     responseStream: false,
-    requestType: NanoService_pb.EmptyRequest,
+    requestType: Miscellaneous_pb.EmptyRequest,
     responseType: Blocks_pb.BlockCountResponse,
     requestSerialize: serialize_nano_EmptyRequest,
     requestDeserialize: deserialize_nano_EmptyRequest,
@@ -878,7 +889,7 @@ var NanoRPCService = exports.NanoRPCService = {
     path: '/nano.NanoRPC/BlockCountType',
     requestStream: false,
     responseStream: false,
-    requestType: NanoService_pb.EmptyRequest,
+    requestType: Miscellaneous_pb.EmptyRequest,
     responseType: Blocks_pb.BlockCountTypeResponse,
     requestSerialize: serialize_nano_EmptyRequest,
     requestDeserialize: deserialize_nano_EmptyRequest,
@@ -934,7 +945,7 @@ var NanoRPCService = exports.NanoRPCService = {
     path: '/nano.NanoRPC/BootstrapAny',
     requestStream: false,
     responseStream: false,
-    requestType: NanoService_pb.EmptyRequest,
+    requestType: Miscellaneous_pb.EmptyRequest,
     responseType: Bootstrap_pb.SuccessResponse,
     requestSerialize: serialize_nano_EmptyRequest,
     requestDeserialize: deserialize_nano_EmptyRequest,
@@ -945,7 +956,7 @@ var NanoRPCService = exports.NanoRPCService = {
     path: '/nano.NanoRPC/BootstrapStatus',
     requestStream: false,
     responseStream: false,
-    requestType: NanoService_pb.EmptyRequest,
+    requestType: Miscellaneous_pb.EmptyRequest,
     responseType: Bootstrap_pb.BootstrapStatusResponse,
     requestSerialize: serialize_nano_EmptyRequest,
     requestDeserialize: deserialize_nano_EmptyRequest,
@@ -968,7 +979,7 @@ var NanoRPCService = exports.NanoRPCService = {
     path: '/nano.NanoRPC/ConfirmationHistory',
     requestStream: false,
     responseStream: false,
-    requestType: NanoService_pb.EmptyRequest,
+    requestType: Miscellaneous_pb.EmptyRequest,
     responseType: Confirmation_pb.ConfirmationHistoryResponse,
     requestSerialize: serialize_nano_EmptyRequest,
     requestDeserialize: deserialize_nano_EmptyRequest,
@@ -1020,12 +1031,35 @@ var NanoRPCService = exports.NanoRPCService = {
     responseSerialize: serialize_nano_CountResponse,
     responseDeserialize: deserialize_nano_CountResponse,
   },
+  // Frontiers
+  frontiers: {
+    path: '/nano.NanoRPC/Frontiers',
+    requestStream: false,
+    responseStream: false,
+    requestType: Frontiers_pb.FrontiersRequest,
+    responseType: Frontiers_pb.FrontiersResponse,
+    requestSerialize: serialize_nano_FrontiersRequest,
+    requestDeserialize: deserialize_nano_FrontiersRequest,
+    responseSerialize: serialize_nano_FrontiersResponse,
+    responseDeserialize: deserialize_nano_FrontiersResponse,
+  },
+  frontierCount: {
+    path: '/nano.NanoRPC/FrontierCount',
+    requestStream: false,
+    responseStream: false,
+    requestType: Miscellaneous_pb.EmptyRequest,
+    responseType: Delegators_pb.CountResponse,
+    requestSerialize: serialize_nano_EmptyRequest,
+    requestDeserialize: deserialize_nano_EmptyRequest,
+    responseSerialize: serialize_nano_CountResponse,
+    responseDeserialize: deserialize_nano_CountResponse,
+  },
   // Peers
   peers: {
     path: '/nano.NanoRPC/Peers',
     requestStream: false,
     responseStream: false,
-    requestType: NanoService_pb.EmptyRequest,
+    requestType: Miscellaneous_pb.EmptyRequest,
     responseType: Peers_pb.PeersResponse,
     requestSerialize: serialize_nano_EmptyRequest,
     requestDeserialize: deserialize_nano_EmptyRequest,

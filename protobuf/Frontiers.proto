@@ -1,0 +1,11 @@
+syntax = "proto3";
+package nano;
+
+message FrontiersRequest {
+  string account = 1;
+  int32 count = 2;
+}
+
+message FrontiersResponse {
+  map<string, string> frontiers = 1;
+}
