@@ -661,6 +661,17 @@ var NanoRPCService = exports.NanoRPCService = {
     responseSerialize: serialize_nano_BlocksInfoResponse,
     responseDeserialize: deserialize_nano_BlocksInfoResponse,
   },
+  blockAccount: {
+    path: '/nano.NanoRPC/BlockAccount',
+    requestStream: false,
+    responseStream: false,
+    requestType: Blocks_pb.BlockRequest,
+    responseType: Accounts_pb.AccountResponse,
+    requestSerialize: serialize_nano_BlockRequest,
+    requestDeserialize: deserialize_nano_BlockRequest,
+    responseSerialize: serialize_nano_AccountResponse,
+    responseDeserialize: deserialize_nano_AccountResponse,
+  },
   // Peers
   peers: {
     path: '/nano.NanoRPC/Peers',
