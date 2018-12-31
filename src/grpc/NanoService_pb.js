@@ -13,6 +13,7 @@ var global = Function('return this')();
 
 var Accounts_pb = require('./Accounts_pb.js');
 var Blocks_pb = require('./Blocks_pb.js');
+var Bootstrap_pb = require('./Bootstrap_pb.js');
 var Peers_pb = require('./Peers_pb.js');
 var Wallet_pb = require('./Wallet_pb.js');
 goog.exportSymbol('proto.nano.EmptyRequest', null, global);

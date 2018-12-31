@@ -1,0 +1,22 @@
+syntax = "proto3";
+package nano;
+
+message BootstrapRequest {
+  string address = 1;
+  int32 port = 2;
+}
+
+message BootstrapLazyRequest {
+  string hash = 1;
+  bool force = 2;
+}
+
+message SuccessResponse {
+  bool success = 1;
+}
+
+// This is not a stable API so let's just use a map instead
+// of well defined keys.
+message BootstrapStatusResponse {
+  map<string, string> status = 1;
+}

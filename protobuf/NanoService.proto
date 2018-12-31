@@ -3,6 +3,7 @@ package nano;
 
 import 'Accounts.proto';
 import 'Blocks.proto';
+import 'Bootstrap.proto';
 import 'Peers.proto';
 import 'Wallet.proto';
 
@@ -35,6 +36,12 @@ service NanoRPC {
   rpc BlockCount (EmptyRequest) returns (BlockCountResponse) {}
   rpc BlockCountType (EmptyRequest) returns (BlockCountTypeResponse) {}
   rpc BlockHash (BlockHashRequest) returns (BlockResponse) {}
+
+  // Bootstrap
+  rpc Bootstrap (BootstrapRequest) returns (SuccessResponse) {}
+  rpc BootstrapLazy (BootstrapLazyRequest) returns (SuccessResponse) {}
+  rpc BootstrapAny (EmptyRequest) returns (SuccessResponse) {}
+  rpc BootstrapStatus (EmptyRequest) returns (BootstrapStatusResponse) {}
 
   // Peers
   rpc Peers (EmptyRequest) returns (PeersResponse) {}

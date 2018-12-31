@@ -5,6 +5,7 @@ var grpc = require('grpc');
 var NanoService_pb = require('./NanoService_pb.js');
 var Accounts_pb = require('./Accounts_pb.js');
 var Blocks_pb = require('./Blocks_pb.js');
+var Bootstrap_pb = require('./Bootstrap_pb.js');
 var Peers_pb = require('./Peers_pb.js');
 var Wallet_pb = require('./Wallet_pb.js');
 
@@ -371,6 +372,39 @@ function deserialize_nano_BlocksResponse(buffer_arg) {
   return Blocks_pb.BlocksResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_BootstrapLazyRequest(arg) {
+  if (!(arg instanceof Bootstrap_pb.BootstrapLazyRequest)) {
+    throw new Error('Expected argument of type nano.BootstrapLazyRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_BootstrapLazyRequest(buffer_arg) {
+  return Bootstrap_pb.BootstrapLazyRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_BootstrapRequest(arg) {
+  if (!(arg instanceof Bootstrap_pb.BootstrapRequest)) {
+    throw new Error('Expected argument of type nano.BootstrapRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_BootstrapRequest(buffer_arg) {
+  return Bootstrap_pb.BootstrapRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_BootstrapStatusResponse(arg) {
+  if (!(arg instanceof Bootstrap_pb.BootstrapStatusResponse)) {
+    throw new Error('Expected argument of type nano.BootstrapStatusResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_BootstrapStatusResponse(buffer_arg) {
+  return Bootstrap_pb.BootstrapStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_nano_EmptyRequest(arg) {
   if (!(arg instanceof NanoService_pb.EmptyRequest)) {
     throw new Error('Expected argument of type nano.EmptyRequest');
@@ -402,6 +436,17 @@ function serialize_nano_PeersResponse(arg) {
 
 function deserialize_nano_PeersResponse(buffer_arg) {
   return Peers_pb.PeersResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_SuccessResponse(arg) {
+  if (!(arg instanceof Bootstrap_pb.SuccessResponse)) {
+    throw new Error('Expected argument of type nano.SuccessResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_SuccessResponse(buffer_arg) {
+  return Bootstrap_pb.SuccessResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_nano_ValidResponse(arg) {
@@ -715,6 +760,51 @@ var NanoRPCService = exports.NanoRPCService = {
     requestDeserialize: deserialize_nano_BlockHashRequest,
     responseSerialize: serialize_nano_BlockResponse,
     responseDeserialize: deserialize_nano_BlockResponse,
+  },
+  // Bootstrap
+  bootstrap: {
+    path: '/nano.NanoRPC/Bootstrap',
+    requestStream: false,
+    responseStream: false,
+    requestType: Bootstrap_pb.BootstrapRequest,
+    responseType: Bootstrap_pb.SuccessResponse,
+    requestSerialize: serialize_nano_BootstrapRequest,
+    requestDeserialize: deserialize_nano_BootstrapRequest,
+    responseSerialize: serialize_nano_SuccessResponse,
+    responseDeserialize: deserialize_nano_SuccessResponse,
+  },
+  bootstrapLazy: {
+    path: '/nano.NanoRPC/BootstrapLazy',
+    requestStream: false,
+    responseStream: false,
+    requestType: Bootstrap_pb.BootstrapLazyRequest,
+    responseType: Bootstrap_pb.SuccessResponse,
+    requestSerialize: serialize_nano_BootstrapLazyRequest,
+    requestDeserialize: deserialize_nano_BootstrapLazyRequest,
+    responseSerialize: serialize_nano_SuccessResponse,
+    responseDeserialize: deserialize_nano_SuccessResponse,
+  },
+  bootstrapAny: {
+    path: '/nano.NanoRPC/BootstrapAny',
+    requestStream: false,
+    responseStream: false,
+    requestType: NanoService_pb.EmptyRequest,
+    responseType: Bootstrap_pb.SuccessResponse,
+    requestSerialize: serialize_nano_EmptyRequest,
+    requestDeserialize: deserialize_nano_EmptyRequest,
+    responseSerialize: serialize_nano_SuccessResponse,
+    responseDeserialize: deserialize_nano_SuccessResponse,
+  },
+  bootstrapStatus: {
+    path: '/nano.NanoRPC/BootstrapStatus',
+    requestStream: false,
+    responseStream: false,
+    requestType: NanoService_pb.EmptyRequest,
+    responseType: Bootstrap_pb.BootstrapStatusResponse,
+    requestSerialize: serialize_nano_EmptyRequest,
+    requestDeserialize: deserialize_nano_EmptyRequest,
+    responseSerialize: serialize_nano_BootstrapStatusResponse,
+    responseDeserialize: deserialize_nano_BootstrapStatusResponse,
   },
   // Peers
   peers: {
