@@ -1,0 +1,10 @@
+syntax = "proto3";
+package nano;
+
+message DelegatorsResponse {
+  map<string, string> delegators = 1;
+}
+
+message CountResponse {
+  int32 count = 1;
+}

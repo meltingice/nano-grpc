@@ -7,6 +7,7 @@ var Accounts_pb = require('./Accounts_pb.js');
 var Blocks_pb = require('./Blocks_pb.js');
 var Bootstrap_pb = require('./Bootstrap_pb.js');
 var Confirmation_pb = require('./Confirmation_pb.js');
+var Delegators_pb = require('./Delegators_pb.js');
 var Peers_pb = require('./Peers_pb.js');
 var Wallet_pb = require('./Wallet_pb.js');
 
@@ -494,6 +495,28 @@ function deserialize_nano_ConfirmationQuorumResponse(buffer_arg) {
   return Confirmation_pb.ConfirmationQuorumResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_CountResponse(arg) {
+  if (!(arg instanceof Delegators_pb.CountResponse)) {
+    throw new Error('Expected argument of type nano.CountResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_CountResponse(buffer_arg) {
+  return Delegators_pb.CountResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_DelegatorsResponse(arg) {
+  if (!(arg instanceof Delegators_pb.DelegatorsResponse)) {
+    throw new Error('Expected argument of type nano.DelegatorsResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_DelegatorsResponse(buffer_arg) {
+  return Delegators_pb.DelegatorsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_nano_EmptyRequest(arg) {
   if (!(arg instanceof NanoService_pb.EmptyRequest)) {
     throw new Error('Expected argument of type nano.EmptyRequest');
@@ -950,6 +973,29 @@ var NanoRPCService = exports.NanoRPCService = {
     requestDeserialize: deserialize_nano_ConfirmationQuorumRequest,
     responseSerialize: serialize_nano_ConfirmationQuorumResponse,
     responseDeserialize: deserialize_nano_ConfirmationQuorumResponse,
+  },
+  // Delegators
+  delegators: {
+    path: '/nano.NanoRPC/Delegators',
+    requestStream: false,
+    responseStream: false,
+    requestType: Accounts_pb.AccountRequest,
+    responseType: Delegators_pb.DelegatorsResponse,
+    requestSerialize: serialize_nano_AccountRequest,
+    requestDeserialize: deserialize_nano_AccountRequest,
+    responseSerialize: serialize_nano_DelegatorsResponse,
+    responseDeserialize: deserialize_nano_DelegatorsResponse,
+  },
+  delegatorsCount: {
+    path: '/nano.NanoRPC/DelegatorsCount',
+    requestStream: false,
+    responseStream: false,
+    requestType: Accounts_pb.AccountRequest,
+    responseType: Delegators_pb.CountResponse,
+    requestSerialize: serialize_nano_AccountRequest,
+    requestDeserialize: deserialize_nano_AccountRequest,
+    responseSerialize: serialize_nano_CountResponse,
+    responseDeserialize: deserialize_nano_CountResponse,
   },
   // Peers
   peers: {

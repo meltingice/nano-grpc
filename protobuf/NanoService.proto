@@ -5,6 +5,7 @@ import 'Accounts.proto';
 import 'Blocks.proto';
 import 'Bootstrap.proto';
 import 'Confirmation.proto';
+import 'Delegators.proto';
 import 'Peers.proto';
 import 'Wallet.proto';
 
@@ -50,6 +51,10 @@ service NanoRPC {
   rpc ConfirmationHistory (EmptyRequest) returns (ConfirmationHistoryResponse) {}
   rpc ConfirmationInfo (ConfirmationInfoRequest) returns (ConfirmationInfoResponse) {}
   rpc ConfirmationQuorum (ConfirmationQuorumRequest) returns (ConfirmationQuorumResponse) {}
+
+  // Delegators
+  rpc Delegators (AccountRequest) returns (DelegatorsResponse) {}
+  rpc DelegatorsCount (AccountRequest) returns (CountResponse) {}
 
   // Peers
   rpc Peers (EmptyRequest) returns (PeersResponse) {}
