@@ -4,6 +4,8 @@ A gRPC server for the Nano cryptocurrency node. Allows you to query the node usi
 
 This server supports communication with the Nano node via the experimental IPC RPC or via the HTTP RPC.
 
+**This is a work in progress. Not all of the RPC methods are implemented yet.**
+
 ## Installation
 
 nano-grpc can be installed from npm:
