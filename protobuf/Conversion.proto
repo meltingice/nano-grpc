@@ -1,0 +1,10 @@
+syntax = "proto3";
+package nano;
+
+message AmountRequest {
+  string amount = 1;
+}
+
+message AmountResponse {
+  string amount = 1;
+}

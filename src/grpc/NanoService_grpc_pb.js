@@ -6,6 +6,7 @@ var Accounts_pb = require('./Accounts_pb.js');
 var Blocks_pb = require('./Blocks_pb.js');
 var Bootstrap_pb = require('./Bootstrap_pb.js');
 var Confirmation_pb = require('./Confirmation_pb.js');
+var Conversion_pb = require('./Conversion_pb.js');
 var Delegators_pb = require('./Delegators_pb.js');
 var Frontiers_pb = require('./Frontiers_pb.js');
 var Miscellaneous_pb = require('./Miscellaneous_pb.js');
@@ -274,6 +275,28 @@ function serialize_nano_ActiveConfirmationRequest(arg) {
 
 function deserialize_nano_ActiveConfirmationRequest(buffer_arg) {
   return Confirmation_pb.ActiveConfirmationRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_AmountRequest(arg) {
+  if (!(arg instanceof Conversion_pb.AmountRequest)) {
+    throw new Error('Expected argument of type nano.AmountRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_AmountRequest(buffer_arg) {
+  return Conversion_pb.AmountRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_AmountResponse(arg) {
+  if (!(arg instanceof Conversion_pb.AmountResponse)) {
+    throw new Error('Expected argument of type nano.AmountResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_AmountResponse(buffer_arg) {
+  return Conversion_pb.AmountResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_nano_Block(arg) {
@@ -1007,6 +1030,73 @@ var NanoRPCService = exports.NanoRPCService = {
     requestDeserialize: deserialize_nano_ConfirmationQuorumRequest,
     responseSerialize: serialize_nano_ConfirmationQuorumResponse,
     responseDeserialize: deserialize_nano_ConfirmationQuorumResponse,
+  },
+  // Conversion
+  mraiFromRaw: {
+    path: '/nano.NanoRPC/MraiFromRaw',
+    requestStream: false,
+    responseStream: false,
+    requestType: Conversion_pb.AmountRequest,
+    responseType: Conversion_pb.AmountResponse,
+    requestSerialize: serialize_nano_AmountRequest,
+    requestDeserialize: deserialize_nano_AmountRequest,
+    responseSerialize: serialize_nano_AmountResponse,
+    responseDeserialize: deserialize_nano_AmountResponse,
+  },
+  mraiToRaw: {
+    path: '/nano.NanoRPC/MraiToRaw',
+    requestStream: false,
+    responseStream: false,
+    requestType: Conversion_pb.AmountRequest,
+    responseType: Conversion_pb.AmountResponse,
+    requestSerialize: serialize_nano_AmountRequest,
+    requestDeserialize: deserialize_nano_AmountRequest,
+    responseSerialize: serialize_nano_AmountResponse,
+    responseDeserialize: deserialize_nano_AmountResponse,
+  },
+  kraiFromRaw: {
+    path: '/nano.NanoRPC/KraiFromRaw',
+    requestStream: false,
+    responseStream: false,
+    requestType: Conversion_pb.AmountRequest,
+    responseType: Conversion_pb.AmountResponse,
+    requestSerialize: serialize_nano_AmountRequest,
+    requestDeserialize: deserialize_nano_AmountRequest,
+    responseSerialize: serialize_nano_AmountResponse,
+    responseDeserialize: deserialize_nano_AmountResponse,
+  },
+  kraiToRaw: {
+    path: '/nano.NanoRPC/KraiToRaw',
+    requestStream: false,
+    responseStream: false,
+    requestType: Conversion_pb.AmountRequest,
+    responseType: Conversion_pb.AmountResponse,
+    requestSerialize: serialize_nano_AmountRequest,
+    requestDeserialize: deserialize_nano_AmountRequest,
+    responseSerialize: serialize_nano_AmountResponse,
+    responseDeserialize: deserialize_nano_AmountResponse,
+  },
+  raiFromRaw: {
+    path: '/nano.NanoRPC/RaiFromRaw',
+    requestStream: false,
+    responseStream: false,
+    requestType: Conversion_pb.AmountRequest,
+    responseType: Conversion_pb.AmountResponse,
+    requestSerialize: serialize_nano_AmountRequest,
+    requestDeserialize: deserialize_nano_AmountRequest,
+    responseSerialize: serialize_nano_AmountResponse,
+    responseDeserialize: deserialize_nano_AmountResponse,
+  },
+  raiToRaw: {
+    path: '/nano.NanoRPC/RaiToRaw',
+    requestStream: false,
+    responseStream: false,
+    requestType: Conversion_pb.AmountRequest,
+    responseType: Conversion_pb.AmountResponse,
+    requestSerialize: serialize_nano_AmountRequest,
+    requestDeserialize: deserialize_nano_AmountRequest,
+    responseSerialize: serialize_nano_AmountResponse,
+    responseDeserialize: deserialize_nano_AmountResponse,
   },
   // Delegators
   delegators: {

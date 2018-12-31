@@ -5,6 +5,7 @@ import 'Accounts.proto';
 import 'Blocks.proto';
 import 'Bootstrap.proto';
 import 'Confirmation.proto';
+import 'Conversion.proto';
 import 'Delegators.proto';
 import 'Frontiers.proto';
 import 'Miscellaneous.proto';
@@ -13,58 +14,66 @@ import 'Wallet.proto';
 
 service NanoRPC {
   // Accounts
-  rpc AccountBalance (AccountRequest) returns (AccountBalanceResponse) {}
-  rpc AccountBlockCount (AccountRequest) returns (AccountBlockCountResponse) {}
-  rpc AccountInfo (AccountInfoRequest) returns (AccountInfoResponse) {}
-  rpc AccountCreate (AccountCreateRequest) returns (AccountResponse) {}
-  rpc AccountGet (AccountKeyRequest) returns (AccountResponse) {}
-  rpc AccountHistory (AccountHistoryRequest) returns (AccountHistoryResponse) {}
-  rpc AccountList (WalletRequest) returns (AccountListResponse) {}
-  rpc AccountMove (AccountMoveRequest) returns (AccountMoveResponse) {}
-  rpc AccountPublicKey (AccountRequest) returns (AccountKeyResponse) {}
-  rpc AccountRemove (AccountRemoveRequest) returns (AccountRemoveResponse) {}
-  rpc AccountRepresentative (AccountRequest) returns (AccountResponse) {}
-  rpc AccountRepresentativeSet (AccountRepresentativeRequest) returns (BlockResponse) {}
-  rpc AccountWeight (AccountRequest) returns (WeightResponse) {}
-  rpc AccountsBalances (AccountsRequest) returns (AccountsBalancesResponse) {}
-  rpc AccountsCreate (AccountsCreateRequest) returns (AccountsResponse) {}
-  rpc AccountsFrontiers (AccountsRequest) returns (FrontiersResponse) {}
-  rpc AccountsPending (AccountsPendingRequest) returns (AccountsPendingResponse) {}
-  rpc ValidateAccountNumber (AccountRequest) returns (ValidResponse) {}
+  rpc AccountBalance (AccountRequest) returns (AccountBalanceResponse);
+  rpc AccountBlockCount (AccountRequest) returns (AccountBlockCountResponse);
+  rpc AccountInfo (AccountInfoRequest) returns (AccountInfoResponse);
+  rpc AccountCreate (AccountCreateRequest) returns (AccountResponse);
+  rpc AccountGet (AccountKeyRequest) returns (AccountResponse);
+  rpc AccountHistory (AccountHistoryRequest) returns (AccountHistoryResponse);
+  rpc AccountList (WalletRequest) returns (AccountListResponse);
+  rpc AccountMove (AccountMoveRequest) returns (AccountMoveResponse);
+  rpc AccountPublicKey (AccountRequest) returns (AccountKeyResponse);
+  rpc AccountRemove (AccountRemoveRequest) returns (AccountRemoveResponse);
+  rpc AccountRepresentative (AccountRequest) returns (AccountResponse);
+  rpc AccountRepresentativeSet (AccountRepresentativeRequest) returns (BlockResponse);
+  rpc AccountWeight (AccountRequest) returns (WeightResponse);
+  rpc AccountsBalances (AccountsRequest) returns (AccountsBalancesResponse);
+  rpc AccountsCreate (AccountsCreateRequest) returns (AccountsResponse);
+  rpc AccountsFrontiers (AccountsRequest) returns (FrontiersResponse);
+  rpc AccountsPending (AccountsPendingRequest) returns (AccountsPendingResponse);
+  rpc ValidateAccountNumber (AccountRequest) returns (ValidResponse);
 
   // Blocks
-  rpc BlockGet (BlockRequest) returns (Block) {}
-  rpc BlocksGet (BlocksRequest) returns (BlocksResponse) {}
-  rpc BlocksInfo (BlocksInfoRequest) returns (BlocksInfoResponse) {}
-  rpc BlockAccount (BlockRequest) returns (AccountResponse) {}
-  rpc BlockCount (EmptyRequest) returns (BlockCountResponse) {}
-  rpc BlockCountType (EmptyRequest) returns (BlockCountTypeResponse) {}
-  rpc BlockHash (BlockHashRequest) returns (BlockResponse) {}
-  rpc Chain (ChainRequest) returns (BlockHashesResponse) {}
+  rpc BlockGet (BlockRequest) returns (Block);
+  rpc BlocksGet (BlocksRequest) returns (BlocksResponse);
+  rpc BlocksInfo (BlocksInfoRequest) returns (BlocksInfoResponse);
+  rpc BlockAccount (BlockRequest) returns (AccountResponse);
+  rpc BlockCount (EmptyRequest) returns (BlockCountResponse);
+  rpc BlockCountType (EmptyRequest) returns (BlockCountTypeResponse);
+  rpc BlockHash (BlockHashRequest) returns (BlockResponse);
+  rpc Chain (ChainRequest) returns (BlockHashesResponse);
 
   // Bootstrap
-  rpc Bootstrap (BootstrapRequest) returns (SuccessResponse) {}
-  rpc BootstrapLazy (BootstrapLazyRequest) returns (SuccessResponse) {}
-  rpc BootstrapAny (EmptyRequest) returns (SuccessResponse) {}
-  rpc BootstrapStatus (EmptyRequest) returns (BootstrapStatusResponse) {}
+  rpc Bootstrap (BootstrapRequest) returns (SuccessResponse);
+  rpc BootstrapLazy (BootstrapLazyRequest) returns (SuccessResponse);
+  rpc BootstrapAny (EmptyRequest) returns (SuccessResponse);
+  rpc BootstrapStatus (EmptyRequest) returns (BootstrapStatusResponse);
 
   // Confirmation
-  rpc ConfirmationActive (ActiveConfirmationRequest) returns (BlockHashesResponse) {}
-  rpc ConfirmationHistory (EmptyRequest) returns (ConfirmationHistoryResponse) {}
-  rpc ConfirmationInfo (ConfirmationInfoRequest) returns (ConfirmationInfoResponse) {}
-  rpc ConfirmationQuorum (ConfirmationQuorumRequest) returns (ConfirmationQuorumResponse) {}
+  rpc ConfirmationActive (ActiveConfirmationRequest) returns (BlockHashesResponse);
+  rpc ConfirmationHistory (EmptyRequest) returns (ConfirmationHistoryResponse);
+  rpc ConfirmationInfo (ConfirmationInfoRequest) returns (ConfirmationInfoResponse);
+  rpc ConfirmationQuorum (ConfirmationQuorumRequest) returns (ConfirmationQuorumResponse);
+
+  // Conversion
+  rpc MraiFromRaw (AmountRequest) returns (AmountResponse);
+  rpc MraiToRaw (AmountRequest) returns (AmountResponse);
+  rpc KraiFromRaw (AmountRequest) returns (AmountResponse);
+  rpc KraiToRaw (AmountRequest) returns (AmountResponse);
+  rpc RaiFromRaw (AmountRequest) returns (AmountResponse);
+  rpc RaiToRaw (AmountRequest) returns (AmountResponse);
 
   // Delegators
-  rpc Delegators (AccountRequest) returns (DelegatorsResponse) {}
-  rpc DelegatorsCount (AccountRequest) returns (CountResponse) {}
+  rpc Delegators (AccountRequest) returns (DelegatorsResponse);
+  rpc DelegatorsCount (AccountRequest) returns (CountResponse);
 
   // Frontiers
-  rpc Frontiers (FrontiersRequest) returns (FrontiersResponse) {}
-  rpc FrontierCount (EmptyRequest) returns (CountResponse) {}
+  rpc Frontiers (FrontiersRequest) returns (FrontiersResponse);
+  rpc FrontierCount (EmptyRequest) returns (CountResponse);
 
   // Peers
-  rpc Peers (EmptyRequest) returns (PeersResponse) {}
+  rpc Peers (EmptyRequest) returns (PeersResponse);
 
   // Miscellaneous
-  rpc DeterministicKey (DeterministicKeyRequest) returns (DeterministicKeyResponse) {}
+  rpc DeterministicKey (DeterministicKeyRequest) returns (DeterministicKeyResponse);
 }

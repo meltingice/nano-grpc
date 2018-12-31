@@ -3,6 +3,7 @@ const RESPONSES = [
   "blocks",
   "bootstrap",
   "confirmation",
+  "conversion",
   "delegators",
   "frontiers",
   "miscellaneous",
