@@ -66,3 +66,7 @@ message BlocksInfoResponse {
 message BlockCountTypeResponse {
   map<string,int32> types = 1;
 }
+
+message BlockHashRequest {
+  Block block = 1;
+}

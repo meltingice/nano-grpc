@@ -34,6 +34,7 @@ service NanoRPC {
   rpc BlockAccount (BlockRequest) returns (AccountResponse) {}
   rpc BlockCount (EmptyRequest) returns (BlockCountResponse) {}
   rpc BlockCountType (EmptyRequest) returns (BlockCountTypeResponse) {}
+  rpc BlockHash (BlockHashRequest) returns (BlockResponse) {}
 
   // Peers
   rpc Peers (EmptyRequest) returns (PeersResponse) {}
