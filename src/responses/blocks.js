@@ -8,7 +8,8 @@ const {
   BlocksInfoResponse,
   AccountResponse,
   BlockCountTypeResponse,
-  BlockResponse
+  BlockResponse,
+  BlockHashesResponse
 } = require("../grpc/NanoService_pb");
 
 const contentsToBlockArray = contents => {
@@ -121,5 +122,11 @@ module.exports = client => ({
       };
     },
     data => new BlockResponse([data.hash])
+  ),
+
+  chain: buildRpc(
+    client,
+    req => ({ action: "chain", block: req.getHash(), count: req.getCount() }),
+    data => new BlockHashesResponse([data.blocks])
   )
 });

@@ -70,3 +70,12 @@ message BlockCountTypeResponse {
 message BlockHashRequest {
   Block block = 1;
 }
+
+message ChainRequest {
+  string hash = 1;
+  int32 count = 2;
+}
+
+message BlockHashesResponse {
+  repeated string hashes = 1;
+}

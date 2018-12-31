@@ -306,6 +306,17 @@ function deserialize_nano_BlockHashRequest(buffer_arg) {
   return Blocks_pb.BlockHashRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_BlockHashesResponse(arg) {
+  if (!(arg instanceof Blocks_pb.BlockHashesResponse)) {
+    throw new Error('Expected argument of type nano.BlockHashesResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_BlockHashesResponse(buffer_arg) {
+  return Blocks_pb.BlockHashesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_nano_BlockRequest(arg) {
   if (!(arg instanceof Blocks_pb.BlockRequest)) {
     throw new Error('Expected argument of type nano.BlockRequest');
@@ -403,6 +414,17 @@ function serialize_nano_BootstrapStatusResponse(arg) {
 
 function deserialize_nano_BootstrapStatusResponse(buffer_arg) {
   return Bootstrap_pb.BootstrapStatusResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_ChainRequest(arg) {
+  if (!(arg instanceof Blocks_pb.ChainRequest)) {
+    throw new Error('Expected argument of type nano.ChainRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_ChainRequest(buffer_arg) {
+  return Blocks_pb.ChainRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_nano_EmptyRequest(arg) {
@@ -760,6 +782,17 @@ var NanoRPCService = exports.NanoRPCService = {
     requestDeserialize: deserialize_nano_BlockHashRequest,
     responseSerialize: serialize_nano_BlockResponse,
     responseDeserialize: deserialize_nano_BlockResponse,
+  },
+  chain: {
+    path: '/nano.NanoRPC/Chain',
+    requestStream: false,
+    responseStream: false,
+    requestType: Blocks_pb.ChainRequest,
+    responseType: Blocks_pb.BlockHashesResponse,
+    requestSerialize: serialize_nano_ChainRequest,
+    requestDeserialize: deserialize_nano_ChainRequest,
+    responseSerialize: serialize_nano_BlockHashesResponse,
+    responseDeserialize: deserialize_nano_BlockHashesResponse,
   },
   // Bootstrap
   bootstrap: {

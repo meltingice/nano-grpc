@@ -36,6 +36,7 @@ service NanoRPC {
   rpc BlockCount (EmptyRequest) returns (BlockCountResponse) {}
   rpc BlockCountType (EmptyRequest) returns (BlockCountTypeResponse) {}
   rpc BlockHash (BlockHashRequest) returns (BlockResponse) {}
+  rpc Chain (ChainRequest) returns (BlockHashesResponse) {}
 
   // Bootstrap
   rpc Bootstrap (BootstrapRequest) returns (SuccessResponse) {}
