@@ -3,11 +3,14 @@
   "version": "0.0.1",
   "description": "A gRPC server for the Nano cryptocurrency node",
   "bin": "index.js",
+  "engines": {
+    "node": ">= 7.10.1"
+  },
   "dependencies": {
     "commander": "^2.19.0",
     "google-protobuf": "^3.6.1",
     "grpc": "^1.17.0",
-    "nano-ipc": "^1.2.0",
+    "nano-ipc": "^1.2.2",
     "node-fetch": "^2.3.0",
     "protobufjs": "^6.8.8"
   },
