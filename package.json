@@ -2,16 +2,19 @@
   "name": "nano-grpc",
   "version": "0.0.1",
   "description": "A gRPC server for the Nano cryptocurrency node",
-  "main": "src/index.js",
+  "bin": "index.js",
   "dependencies": {
+    "commander": "^2.19.0",
     "google-protobuf": "^3.6.1",
     "grpc": "^1.17.0",
     "nano-ipc": "^1.2.0",
+    "node-fetch": "^2.3.0",
     "protobufjs": "^6.8.8"
   },
   "devDependencies": {},
   "scripts": {
-    "build": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./src/grpc/ --grpc_out=./src/grpc/ --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` --proto_path=./protobuf ./protobuf/*.proto",
+    "build":
+      "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./src/grpc/ --grpc_out=./src/grpc/ --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` --proto_path=./protobuf ./protobuf/*.proto",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src"
   },
