@@ -49,6 +49,7 @@ service NanoRPC {
   rpc ConfirmationActive (ActiveConfirmationRequest) returns (BlockHashesResponse) {}
   rpc ConfirmationHistory (EmptyRequest) returns (ConfirmationHistoryResponse) {}
   rpc ConfirmationInfo (ConfirmationInfoRequest) returns (ConfirmationInfoResponse) {}
+  rpc ConfirmationQuorum (ConfirmationQuorumRequest) returns (ConfirmationQuorumResponse) {}
 
   // Peers
   rpc Peers (EmptyRequest) returns (PeersResponse) {}

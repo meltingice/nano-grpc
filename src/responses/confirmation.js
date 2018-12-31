@@ -4,7 +4,8 @@ const { contentsToBlockArray } = require("../lib/block");
 const {
   BlockHashesResponse,
   ConfirmationHistoryResponse,
-  ConfirmationInfoResponse
+  ConfirmationInfoResponse,
+  ConfirmationQuorumResponse
 } = require("../grpc/NanoService_pb");
 
 module.exports = client => ({
@@ -64,5 +65,24 @@ module.exports = client => ({
 
       return reply;
     }
+  ),
+
+  confirmationQuorum: buildRpc(
+    client,
+    req => ({
+      action: "confirmation_quorum",
+      peer_details: req.getPeerDetails()
+    }),
+    data =>
+      new ConfirmationQuorumResponse([
+        data.quorum_delta,
+        data.online_weight_quorum_percent,
+        data.online_weight_minimum,
+        data.online_stake_total,
+        data.peers_stake_total,
+        data.peers
+          ? data.peers.map(peer => [peer.account, peer.ip, peer.weight])
+          : undefined
+      ])
   )
 });

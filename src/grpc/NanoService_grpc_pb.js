@@ -472,6 +472,28 @@ function deserialize_nano_ConfirmationInfoResponse(buffer_arg) {
   return Confirmation_pb.ConfirmationInfoResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_ConfirmationQuorumRequest(arg) {
+  if (!(arg instanceof Confirmation_pb.ConfirmationQuorumRequest)) {
+    throw new Error('Expected argument of type nano.ConfirmationQuorumRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_ConfirmationQuorumRequest(buffer_arg) {
+  return Confirmation_pb.ConfirmationQuorumRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_ConfirmationQuorumResponse(arg) {
+  if (!(arg instanceof Confirmation_pb.ConfirmationQuorumResponse)) {
+    throw new Error('Expected argument of type nano.ConfirmationQuorumResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_ConfirmationQuorumResponse(buffer_arg) {
+  return Confirmation_pb.ConfirmationQuorumResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_nano_EmptyRequest(arg) {
   if (!(arg instanceof NanoService_pb.EmptyRequest)) {
     throw new Error('Expected argument of type nano.EmptyRequest');
@@ -917,6 +939,17 @@ var NanoRPCService = exports.NanoRPCService = {
     requestDeserialize: deserialize_nano_ConfirmationInfoRequest,
     responseSerialize: serialize_nano_ConfirmationInfoResponse,
     responseDeserialize: deserialize_nano_ConfirmationInfoResponse,
+  },
+  confirmationQuorum: {
+    path: '/nano.NanoRPC/ConfirmationQuorum',
+    requestStream: false,
+    responseStream: false,
+    requestType: Confirmation_pb.ConfirmationQuorumRequest,
+    responseType: Confirmation_pb.ConfirmationQuorumResponse,
+    requestSerialize: serialize_nano_ConfirmationQuorumRequest,
+    requestDeserialize: deserialize_nano_ConfirmationQuorumRequest,
+    responseSerialize: serialize_nano_ConfirmationQuorumResponse,
+    responseDeserialize: deserialize_nano_ConfirmationQuorumResponse,
   },
   // Peers
   peers: {

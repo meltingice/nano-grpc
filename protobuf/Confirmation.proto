@@ -40,3 +40,23 @@ message ConfirmationInfoResponse {
 
   map<string, Confirmation> blocks = 4;
 }
+
+message ConfirmationQuorumRequest {
+  bool peer_details = 1;
+}
+
+message ConfirmationQuorumResponse {
+  message Peer {
+    string account = 1;
+    string ip_address = 2;
+    string weight = 3;
+  }
+
+  string quorum_delta = 1;
+  int32 online_weight_quorum_percent = 2;
+  string online_weight_minimum = 3;
+  string online_stake_total = 4;
+  string peers_stake_total = 5;
+
+  repeated Peer peers = 6;
+}
