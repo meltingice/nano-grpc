@@ -4,6 +4,7 @@ package nano;
 import 'Accounts.proto';
 import 'Blocks.proto';
 import 'Bootstrap.proto';
+import 'Confirmation.proto';
 import 'Peers.proto';
 import 'Wallet.proto';
 
@@ -43,6 +44,11 @@ service NanoRPC {
   rpc BootstrapLazy (BootstrapLazyRequest) returns (SuccessResponse) {}
   rpc BootstrapAny (EmptyRequest) returns (SuccessResponse) {}
   rpc BootstrapStatus (EmptyRequest) returns (BootstrapStatusResponse) {}
+
+  // Confirmation
+  rpc ConfirmationActive (ActiveConfirmationRequest) returns (BlockHashesResponse) {}
+  rpc ConfirmationHistory (EmptyRequest) returns (ConfirmationHistoryResponse) {}
+  rpc ConfirmationInfo (ConfirmationInfoRequest) returns (ConfirmationInfoResponse) {}
 
   // Peers
   rpc Peers (EmptyRequest) returns (PeersResponse) {}

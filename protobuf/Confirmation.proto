@@ -1,0 +1,42 @@
+syntax = "proto3";
+package nano;
+
+import "google/protobuf/timestamp.proto";
+import 'Blocks.proto';
+
+message ActiveConfirmationRequest {
+  int32 announcements = 1;
+}
+
+message ConfirmationHistoryResponse {
+  message Confirmation {
+    string hash = 1;
+    int32 duration = 2;
+    google.protobuf.Timestamp time = 3;
+    string tally = 4;
+  }
+
+  int32 count = 1;
+  int32 average = 2;
+  repeated Confirmation confirmations = 3;
+}
+
+message ConfirmationInfoRequest {
+  string root = 1;
+  bool contents = 2;
+  bool representatives = 3;
+}
+
+message ConfirmationInfoResponse {
+  message Confirmation {
+    string tally = 1;
+    Block block = 2;
+    map<string, string> representatives = 3;
+  }
+
+  int32 announcements = 1;
+  string last_winner = 2;
+  string total_tally = 3;
+
+  map<string, Confirmation> blocks = 4;
+}

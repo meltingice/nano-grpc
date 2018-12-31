@@ -1,5 +1,6 @@
 const buildRpc = require("../lib/buildRpc");
 const buildMap = require("../lib/buildMap");
+const { contentsToBlockArray } = require("../lib/block");
 const {
   BlockCountResponse,
   Block,
@@ -11,21 +12,6 @@ const {
   BlockResponse,
   BlockHashesResponse
 } = require("../grpc/NanoService_pb");
-
-const contentsToBlockArray = contents => {
-  const data = JSON.parse(contents);
-  return [
-    BlockType[data.type.toUpperCase()],
-    data.account,
-    data.previous,
-    data.representative,
-    data.balance,
-    data.link,
-    data.link_as_account,
-    data.signature,
-    data.work
-  ];
-};
 
 module.exports = client => ({
   blockGet: buildRpc(

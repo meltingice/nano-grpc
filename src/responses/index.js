@@ -1,4 +1,4 @@
-const RESPONSES = ["accounts", "blocks", "bootstrap", "peers"];
+const RESPONSES = ["accounts", "blocks", "bootstrap", "confirmation", "peers"];
 
 module.exports = function(client) {
   let mergedExports = {};

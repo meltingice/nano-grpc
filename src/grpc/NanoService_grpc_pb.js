@@ -6,6 +6,7 @@ var NanoService_pb = require('./NanoService_pb.js');
 var Accounts_pb = require('./Accounts_pb.js');
 var Blocks_pb = require('./Blocks_pb.js');
 var Bootstrap_pb = require('./Bootstrap_pb.js');
+var Confirmation_pb = require('./Confirmation_pb.js');
 var Peers_pb = require('./Peers_pb.js');
 var Wallet_pb = require('./Wallet_pb.js');
 
@@ -262,6 +263,17 @@ function deserialize_nano_AccountsResponse(buffer_arg) {
   return Accounts_pb.AccountsResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_ActiveConfirmationRequest(arg) {
+  if (!(arg instanceof Confirmation_pb.ActiveConfirmationRequest)) {
+    throw new Error('Expected argument of type nano.ActiveConfirmationRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_ActiveConfirmationRequest(buffer_arg) {
+  return Confirmation_pb.ActiveConfirmationRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_nano_Block(arg) {
   if (!(arg instanceof Blocks_pb.Block)) {
     throw new Error('Expected argument of type nano.Block');
@@ -425,6 +437,39 @@ function serialize_nano_ChainRequest(arg) {
 
 function deserialize_nano_ChainRequest(buffer_arg) {
   return Blocks_pb.ChainRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_ConfirmationHistoryResponse(arg) {
+  if (!(arg instanceof Confirmation_pb.ConfirmationHistoryResponse)) {
+    throw new Error('Expected argument of type nano.ConfirmationHistoryResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_ConfirmationHistoryResponse(buffer_arg) {
+  return Confirmation_pb.ConfirmationHistoryResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_ConfirmationInfoRequest(arg) {
+  if (!(arg instanceof Confirmation_pb.ConfirmationInfoRequest)) {
+    throw new Error('Expected argument of type nano.ConfirmationInfoRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_ConfirmationInfoRequest(buffer_arg) {
+  return Confirmation_pb.ConfirmationInfoRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_ConfirmationInfoResponse(arg) {
+  if (!(arg instanceof Confirmation_pb.ConfirmationInfoResponse)) {
+    throw new Error('Expected argument of type nano.ConfirmationInfoResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_ConfirmationInfoResponse(buffer_arg) {
+  return Confirmation_pb.ConfirmationInfoResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_nano_EmptyRequest(arg) {
@@ -838,6 +883,40 @@ var NanoRPCService = exports.NanoRPCService = {
     requestDeserialize: deserialize_nano_EmptyRequest,
     responseSerialize: serialize_nano_BootstrapStatusResponse,
     responseDeserialize: deserialize_nano_BootstrapStatusResponse,
+  },
+  // Confirmation
+  confirmationActive: {
+    path: '/nano.NanoRPC/ConfirmationActive',
+    requestStream: false,
+    responseStream: false,
+    requestType: Confirmation_pb.ActiveConfirmationRequest,
+    responseType: Blocks_pb.BlockHashesResponse,
+    requestSerialize: serialize_nano_ActiveConfirmationRequest,
+    requestDeserialize: deserialize_nano_ActiveConfirmationRequest,
+    responseSerialize: serialize_nano_BlockHashesResponse,
+    responseDeserialize: deserialize_nano_BlockHashesResponse,
+  },
+  confirmationHistory: {
+    path: '/nano.NanoRPC/ConfirmationHistory',
+    requestStream: false,
+    responseStream: false,
+    requestType: NanoService_pb.EmptyRequest,
+    responseType: Confirmation_pb.ConfirmationHistoryResponse,
+    requestSerialize: serialize_nano_EmptyRequest,
+    requestDeserialize: deserialize_nano_EmptyRequest,
+    responseSerialize: serialize_nano_ConfirmationHistoryResponse,
+    responseDeserialize: deserialize_nano_ConfirmationHistoryResponse,
+  },
+  confirmationInfo: {
+    path: '/nano.NanoRPC/ConfirmationInfo',
+    requestStream: false,
+    responseStream: false,
+    requestType: Confirmation_pb.ConfirmationInfoRequest,
+    responseType: Confirmation_pb.ConfirmationInfoResponse,
+    requestSerialize: serialize_nano_ConfirmationInfoRequest,
+    requestDeserialize: deserialize_nano_ConfirmationInfoRequest,
+    responseSerialize: serialize_nano_ConfirmationInfoResponse,
+    responseDeserialize: deserialize_nano_ConfirmationInfoResponse,
   },
   // Peers
   peers: {
