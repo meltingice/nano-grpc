@@ -9,8 +9,17 @@ message DeterministicKeyRequest {
   int32 index = 2;
 }
 
-message DeterministicKeyResponse {
+message KeyRequest {
+  string key = 1;
+}
+
+message KeyResponse {
   string private = 1;
   string public = 2;
   string account = 3;
+}
+
+message KeepaliveRequest {
+  string address = 1;
+  int32 port = 2;
 }

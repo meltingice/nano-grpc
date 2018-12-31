@@ -552,17 +552,6 @@ function deserialize_nano_DeterministicKeyRequest(buffer_arg) {
   return Miscellaneous_pb.DeterministicKeyRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_nano_DeterministicKeyResponse(arg) {
-  if (!(arg instanceof Miscellaneous_pb.DeterministicKeyResponse)) {
-    throw new Error('Expected argument of type nano.DeterministicKeyResponse');
-  }
-  return new Buffer(arg.serializeBinary());
-}
-
-function deserialize_nano_DeterministicKeyResponse(buffer_arg) {
-  return Miscellaneous_pb.DeterministicKeyResponse.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_nano_EmptyRequest(arg) {
   if (!(arg instanceof Miscellaneous_pb.EmptyRequest)) {
     throw new Error('Expected argument of type nano.EmptyRequest');
@@ -594,6 +583,39 @@ function serialize_nano_FrontiersResponse(arg) {
 
 function deserialize_nano_FrontiersResponse(buffer_arg) {
   return Frontiers_pb.FrontiersResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_KeepaliveRequest(arg) {
+  if (!(arg instanceof Miscellaneous_pb.KeepaliveRequest)) {
+    throw new Error('Expected argument of type nano.KeepaliveRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_KeepaliveRequest(buffer_arg) {
+  return Miscellaneous_pb.KeepaliveRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_KeyRequest(arg) {
+  if (!(arg instanceof Miscellaneous_pb.KeyRequest)) {
+    throw new Error('Expected argument of type nano.KeyRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_KeyRequest(buffer_arg) {
+  return Miscellaneous_pb.KeyRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_KeyResponse(arg) {
+  if (!(arg instanceof Miscellaneous_pb.KeyResponse)) {
+    throw new Error('Expected argument of type nano.KeyResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_KeyResponse(buffer_arg) {
+  return Miscellaneous_pb.KeyResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_nano_PeersResponse(arg) {
@@ -1162,11 +1184,44 @@ var NanoRPCService = exports.NanoRPCService = {
     requestStream: false,
     responseStream: false,
     requestType: Miscellaneous_pb.DeterministicKeyRequest,
-    responseType: Miscellaneous_pb.DeterministicKeyResponse,
+    responseType: Miscellaneous_pb.KeyResponse,
     requestSerialize: serialize_nano_DeterministicKeyRequest,
     requestDeserialize: deserialize_nano_DeterministicKeyRequest,
-    responseSerialize: serialize_nano_DeterministicKeyResponse,
-    responseDeserialize: deserialize_nano_DeterministicKeyResponse,
+    responseSerialize: serialize_nano_KeyResponse,
+    responseDeserialize: deserialize_nano_KeyResponse,
+  },
+  keyCreate: {
+    path: '/nano.NanoRPC/KeyCreate',
+    requestStream: false,
+    responseStream: false,
+    requestType: Miscellaneous_pb.EmptyRequest,
+    responseType: Miscellaneous_pb.KeyResponse,
+    requestSerialize: serialize_nano_EmptyRequest,
+    requestDeserialize: deserialize_nano_EmptyRequest,
+    responseSerialize: serialize_nano_KeyResponse,
+    responseDeserialize: deserialize_nano_KeyResponse,
+  },
+  keyExpand: {
+    path: '/nano.NanoRPC/KeyExpand',
+    requestStream: false,
+    responseStream: false,
+    requestType: Miscellaneous_pb.KeyRequest,
+    responseType: Miscellaneous_pb.KeyResponse,
+    requestSerialize: serialize_nano_KeyRequest,
+    requestDeserialize: deserialize_nano_KeyRequest,
+    responseSerialize: serialize_nano_KeyResponse,
+    responseDeserialize: deserialize_nano_KeyResponse,
+  },
+  keepalive: {
+    path: '/nano.NanoRPC/Keepalive',
+    requestStream: false,
+    responseStream: false,
+    requestType: Miscellaneous_pb.KeepaliveRequest,
+    responseType: Miscellaneous_pb.EmptyRequest,
+    requestSerialize: serialize_nano_KeepaliveRequest,
+    requestDeserialize: deserialize_nano_KeepaliveRequest,
+    responseSerialize: serialize_nano_EmptyRequest,
+    responseDeserialize: deserialize_nano_EmptyRequest,
   },
 };
 

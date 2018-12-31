@@ -75,5 +75,8 @@ service NanoRPC {
   rpc Peers (EmptyRequest) returns (PeersResponse);
 
   // Miscellaneous
-  rpc DeterministicKey (DeterministicKeyRequest) returns (DeterministicKeyResponse);
+  rpc DeterministicKey (DeterministicKeyRequest) returns (KeyResponse);
+  rpc KeyCreate (EmptyRequest) returns (KeyResponse);
+  rpc KeyExpand (KeyRequest) returns (KeyResponse);
+  rpc Keepalive (KeepaliveRequest) returns (EmptyRequest);
 }
