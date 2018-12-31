@@ -62,3 +62,7 @@ message BlocksInfoResponse {
 
   map<string, BlockWithInfo> blocks = 1;
 }
+
+message BlockCountTypeResponse {
+  map<string,int32> types = 1;
+}

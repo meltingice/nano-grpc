@@ -28,11 +28,12 @@ service NanoRPC {
   rpc ValidateAccountNumber (AccountRequest) returns (ValidResponse) {}
 
   // Blocks
-  rpc BlockCount (EmptyRequest) returns (BlockCountResponse) {}
   rpc BlockGet (BlockRequest) returns (Block) {}
   rpc BlocksGet (BlocksRequest) returns (BlocksResponse) {}
   rpc BlocksInfo (BlocksInfoRequest) returns (BlocksInfoResponse) {}
   rpc BlockAccount (BlockRequest) returns (AccountResponse) {}
+  rpc BlockCount (EmptyRequest) returns (BlockCountResponse) {}
+  rpc BlockCountType (EmptyRequest) returns (BlockCountTypeResponse) {}
 
   // Peers
   rpc Peers (EmptyRequest) returns (PeersResponse) {}

@@ -283,6 +283,17 @@ function deserialize_nano_BlockCountResponse(buffer_arg) {
   return Blocks_pb.BlockCountResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_BlockCountTypeResponse(arg) {
+  if (!(arg instanceof Blocks_pb.BlockCountTypeResponse)) {
+    throw new Error('Expected argument of type nano.BlockCountTypeResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_BlockCountTypeResponse(buffer_arg) {
+  return Blocks_pb.BlockCountTypeResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_nano_BlockRequest(arg) {
   if (!(arg instanceof Blocks_pb.BlockRequest)) {
     throw new Error('Expected argument of type nano.BlockRequest');
@@ -617,17 +628,6 @@ var NanoRPCService = exports.NanoRPCService = {
     responseDeserialize: deserialize_nano_ValidResponse,
   },
   // Blocks
-  blockCount: {
-    path: '/nano.NanoRPC/BlockCount',
-    requestStream: false,
-    responseStream: false,
-    requestType: NanoService_pb.EmptyRequest,
-    responseType: Blocks_pb.BlockCountResponse,
-    requestSerialize: serialize_nano_EmptyRequest,
-    requestDeserialize: deserialize_nano_EmptyRequest,
-    responseSerialize: serialize_nano_BlockCountResponse,
-    responseDeserialize: deserialize_nano_BlockCountResponse,
-  },
   blockGet: {
     path: '/nano.NanoRPC/BlockGet',
     requestStream: false,
@@ -671,6 +671,28 @@ var NanoRPCService = exports.NanoRPCService = {
     requestDeserialize: deserialize_nano_BlockRequest,
     responseSerialize: serialize_nano_AccountResponse,
     responseDeserialize: deserialize_nano_AccountResponse,
+  },
+  blockCount: {
+    path: '/nano.NanoRPC/BlockCount',
+    requestStream: false,
+    responseStream: false,
+    requestType: NanoService_pb.EmptyRequest,
+    responseType: Blocks_pb.BlockCountResponse,
+    requestSerialize: serialize_nano_EmptyRequest,
+    requestDeserialize: deserialize_nano_EmptyRequest,
+    responseSerialize: serialize_nano_BlockCountResponse,
+    responseDeserialize: deserialize_nano_BlockCountResponse,
+  },
+  blockCountType: {
+    path: '/nano.NanoRPC/BlockCountType',
+    requestStream: false,
+    responseStream: false,
+    requestType: NanoService_pb.EmptyRequest,
+    responseType: Blocks_pb.BlockCountTypeResponse,
+    requestSerialize: serialize_nano_EmptyRequest,
+    requestDeserialize: deserialize_nano_EmptyRequest,
+    responseSerialize: serialize_nano_BlockCountTypeResponse,
+    responseDeserialize: deserialize_nano_BlockCountTypeResponse,
   },
   // Peers
   peers: {

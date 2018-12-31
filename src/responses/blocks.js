@@ -6,7 +6,8 @@ const {
   BlockType,
   BlocksResponse,
   BlocksInfoResponse,
-  AccountResponse
+  AccountResponse,
+  BlockCountTypeResponse
 } = require("../grpc/NanoService_pb");
 
 const contentsToBlockArray = contents => {
@@ -25,12 +26,6 @@ const contentsToBlockArray = contents => {
 };
 
 module.exports = client => ({
-  blockCount: buildRpc(
-    client,
-    () => ({ action: "block_count" }),
-    data => new BlockCountResponse([data.count, data.unchecked])
-  ),
-
   blockGet: buildRpc(
     client,
     req => ({ action: "block", hash: req.getHash() }),
@@ -95,5 +90,21 @@ module.exports = client => ({
     client,
     req => ({ action: "block_account", hash: req.getHash() }),
     data => new AccountResponse([data.account])
+  ),
+
+  blockCount: buildRpc(
+    client,
+    () => ({ action: "block_count" }),
+    data => new BlockCountResponse([data.count, data.unchecked])
+  ),
+
+  blockCountType: buildRpc(
+    client,
+    req => ({ action: "block_count_type" }),
+    data => {
+      const reply = new BlockCountTypeResponse();
+      buildMap(reply.getTypesMap(), data, value => value);
+      return reply;
+    }
   )
 });
