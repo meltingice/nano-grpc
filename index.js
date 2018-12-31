@@ -22,8 +22,8 @@ program
     "URL of the Nano HTTP RPC, if enabled",
     "http://[::1]:7076"
   )
-  .option("-h, --host [host]", "host for the gRPC server", "0.0.0.0")
-  .option("-p, --port [port]", "port for the gRPC server", 50051)
+  .option("--host [host]", "host for the gRPC server", "0.0.0.0")
+  .option("--port [port]", "port for the gRPC server", 50051)
   .parse(process.argv);
 
 const Driver = require("./src/drivers")(program.driver);
