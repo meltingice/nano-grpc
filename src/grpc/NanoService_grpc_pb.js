@@ -618,6 +618,28 @@ function deserialize_nano_KeyResponse(buffer_arg) {
   return Miscellaneous_pb.KeyResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_LedgerRequest(arg) {
+  if (!(arg instanceof Frontiers_pb.LedgerRequest)) {
+    throw new Error('Expected argument of type nano.LedgerRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_LedgerRequest(buffer_arg) {
+  return Frontiers_pb.LedgerRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_nano_LedgerResponse(arg) {
+  if (!(arg instanceof Frontiers_pb.LedgerResponse)) {
+    throw new Error('Expected argument of type nano.LedgerResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_LedgerResponse(buffer_arg) {
+  return Frontiers_pb.LedgerResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_nano_PeersResponse(arg) {
   if (!(arg instanceof Peers_pb.PeersResponse)) {
     throw new Error('Expected argument of type nano.PeersResponse');
@@ -1165,6 +1187,17 @@ var NanoRPCService = exports.NanoRPCService = {
     requestDeserialize: deserialize_nano_EmptyRequest,
     responseSerialize: serialize_nano_CountResponse,
     responseDeserialize: deserialize_nano_CountResponse,
+  },
+  ledger: {
+    path: '/nano.NanoRPC/Ledger',
+    requestStream: false,
+    responseStream: false,
+    requestType: Frontiers_pb.LedgerRequest,
+    responseType: Frontiers_pb.LedgerResponse,
+    requestSerialize: serialize_nano_LedgerRequest,
+    requestDeserialize: deserialize_nano_LedgerRequest,
+    responseSerialize: serialize_nano_LedgerResponse,
+    responseDeserialize: deserialize_nano_LedgerResponse,
   },
   // Peers
   peers: {

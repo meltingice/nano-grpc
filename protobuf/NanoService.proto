@@ -70,6 +70,7 @@ service NanoRPC {
   // Frontiers
   rpc Frontiers (FrontiersRequest) returns (FrontiersResponse);
   rpc FrontierCount (EmptyRequest) returns (CountResponse);
+  rpc Ledger (LedgerRequest) returns (LedgerResponse);
 
   // Peers
   rpc Peers (EmptyRequest) returns (PeersResponse);

@@ -1,6 +1,8 @@
 syntax = "proto3";
 package nano;
 
+import "google/protobuf/timestamp.proto";
+
 message FrontiersRequest {
   string account = 1;
   int32 count = 2;
@@ -8,4 +10,30 @@ message FrontiersRequest {
 
 message FrontiersResponse {
   map<string, string> frontiers = 1;
+}
+
+message LedgerRequest {
+  string account = 1;
+  int32 count = 2;
+  bool representative = 3;
+  bool weight = 4;
+  bool pending = 5;
+  google.protobuf.Timestamp modified_since = 6;
+  bool sorting = 7;
+}
+
+message LedgerResponse {
+  message Account {
+    string frontier = 1;
+    string open_block = 2;
+    string representative_block = 3;
+    string balance = 4;
+    google.protobuf.Timestamp modified_timestamp = 5;
+    int32 block_count = 6;
+    string representative = 7;
+    string weight = 8;
+    string pending = 9;
+  }
+
+  map<string, Account> accounts = 1;
 }
