@@ -10,7 +10,8 @@ const {
   AccountResponse,
   BlockCountTypeResponse,
   BlockResponse,
-  BlockHashesResponse
+  BlockHashesResponse,
+  BlockCreateResponse
 } = require("../grpc/NanoService_pb");
 
 module.exports = client => ({
@@ -114,5 +115,23 @@ module.exports = client => ({
     client,
     req => ({ action: "chain", block: req.getHash(), count: req.getCount() }),
     data => new BlockHashesResponse([data.blocks])
+  ),
+
+  blockCreate: buildRpc(
+    client,
+    req => {
+      let block = req.toObject();
+      block.type = Object.keys(BlockType)[block.type].toLowerCase();
+      Object.keys(block).forEach(key => {
+        if (block[key] === "") delete block[key];
+      });
+
+      return {
+        action: "block_create",
+        ...block
+      };
+    },
+    data =>
+      new BlockCreateResponse([data.hash, contentsToBlockArray(data.block)])
   )
 });

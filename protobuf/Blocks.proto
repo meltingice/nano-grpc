@@ -79,3 +79,25 @@ message ChainRequest {
 message BlockHashesResponse {
   repeated string hashes = 1;
 }
+
+message BlockCreateRequest {
+  // Required fields
+  BlockType type = 1;
+  string balance = 2;
+  string representative = 3;
+  string previous = 4;
+
+  // Optional fields (w/ conditions)
+  string link = 5;
+  string source = 6;
+  string destination = 7;
+  string key = 8;
+  string wallet = 9;
+  string account = 10;
+  string work = 11;
+}
+
+message BlockCreateResponse {
+  string hash = 1;
+  Block block = 2;
+}
