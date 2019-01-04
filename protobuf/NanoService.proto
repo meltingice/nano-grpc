@@ -43,6 +43,7 @@ service NanoRPC {
   rpc BlockHash (BlockHashRequest) returns (BlockResponse);
   rpc Chain (ChainRequest) returns (BlockHashesResponse);
   rpc BlockCreate (BlockCreateRequest) returns (BlockCreateResponse);
+  rpc BlockProcess (BlockProcessRequest) returns (BlockResponse);
 
   // Bootstrap
   rpc Bootstrap (BootstrapRequest) returns (SuccessResponse);

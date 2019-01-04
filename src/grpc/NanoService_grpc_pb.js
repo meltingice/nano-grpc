@@ -376,6 +376,17 @@ function deserialize_nano_BlockHashesResponse(buffer_arg) {
   return Blocks_pb.BlockHashesResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_BlockProcessRequest(arg) {
+  if (!(arg instanceof Blocks_pb.BlockProcessRequest)) {
+    throw new Error('Expected argument of type nano.BlockProcessRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_BlockProcessRequest(buffer_arg) {
+  return Blocks_pb.BlockProcessRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_nano_BlockRequest(arg) {
   if (!(arg instanceof Blocks_pb.BlockRequest)) {
     throw new Error('Expected argument of type nano.BlockRequest');
@@ -1017,6 +1028,17 @@ var NanoRPCService = exports.NanoRPCService = {
     requestDeserialize: deserialize_nano_BlockCreateRequest,
     responseSerialize: serialize_nano_BlockCreateResponse,
     responseDeserialize: deserialize_nano_BlockCreateResponse,
+  },
+  blockProcess: {
+    path: '/nano.NanoRPC/BlockProcess',
+    requestStream: false,
+    responseStream: false,
+    requestType: Blocks_pb.BlockProcessRequest,
+    responseType: Blocks_pb.BlockResponse,
+    requestSerialize: serialize_nano_BlockProcessRequest,
+    requestDeserialize: deserialize_nano_BlockProcessRequest,
+    responseSerialize: serialize_nano_BlockResponse,
+    responseDeserialize: deserialize_nano_BlockResponse,
   },
   // Bootstrap
   bootstrap: {

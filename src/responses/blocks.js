@@ -14,6 +14,8 @@ const {
   BlockCreateResponse
 } = require("../grpc/NanoService_pb");
 
+const blockEnumToType = type => Object.keys(BlockType)[type].toLowerCase();
+
 module.exports = client => ({
   blockGet: buildRpc(
     client,
@@ -101,7 +103,7 @@ module.exports = client => ({
     client,
     req => {
       const block = req.getBlock().toObject();
-      block.type = Object.keys(BlockType)[block.type].toLowerCase();
+      block.type = blockEnumToType(block.type);
 
       return {
         action: "block_hash",
@@ -121,7 +123,7 @@ module.exports = client => ({
     client,
     req => {
       let block = req.toObject();
-      block.type = Object.keys(BlockType)[block.type].toLowerCase();
+      block.type = blockEnumToType(block.type);
       Object.keys(block).forEach(key => {
         if (block[key] === "") delete block[key];
       });
@@ -133,5 +135,25 @@ module.exports = client => ({
     },
     data =>
       new BlockCreateResponse([data.hash, contentsToBlockArray(data.block)])
+  ),
+
+  blockProcess: buildRpc(
+    client,
+    req => {
+      const block = req.getBlock().toObject();
+      block.type = blockEnumToType(block.type);
+      block.link_as_account = block.linkAsAccount;
+      delete block.linkAsAccount;
+
+      const data = {
+        action: "process",
+        block: JSON.stringify(block),
+        force: req.getForce()
+      };
+
+      console.log(data);
+      return data;
+    },
+    data => new BlockResponse([data.hash])
   )
 });

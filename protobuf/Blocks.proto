@@ -101,3 +101,8 @@ message BlockCreateResponse {
   string hash = 1;
   Block block = 2;
 }
+
+message BlockProcessRequest {
+  Block block = 1;
+  bool force = 2;
+}
