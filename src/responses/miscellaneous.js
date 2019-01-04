@@ -3,7 +3,8 @@ const buildMap = require("../lib/buildMap");
 const {
   KeyResponse,
   EmptyRequest,
-  SuccessResponse
+  SuccessResponse,
+  AmountResponse
 } = require("../grpc/NanoService_pb");
 
 module.exports = client => ({
@@ -49,5 +50,17 @@ module.exports = client => ({
     client,
     req => ({ action: "node_id_delete" }),
     data => new SuccessResponse([data.deleted === "1" ? true : false])
+  ),
+
+  receiveMinimum: buildRpc(
+    client,
+    req => ({ action: "receive_minimum" }),
+    data => new AmountResponse([data.amount])
+  ),
+
+  receiveMinimumSet: buildRpc(
+    client,
+    req => ({ action: "receive_minimum_set", amount: req.getAmount() }),
+    data => new SuccessResponse([data.success === "" ? true : false])
   )
 });

@@ -1355,6 +1355,28 @@ var NanoRPCService = exports.NanoRPCService = {
     responseSerialize: serialize_nano_SuccessResponse,
     responseDeserialize: deserialize_nano_SuccessResponse,
   },
+  receiveMinimum: {
+    path: '/nano.NanoRPC/ReceiveMinimum',
+    requestStream: false,
+    responseStream: false,
+    requestType: Miscellaneous_pb.EmptyRequest,
+    responseType: Conversion_pb.AmountResponse,
+    requestSerialize: serialize_nano_EmptyRequest,
+    requestDeserialize: deserialize_nano_EmptyRequest,
+    responseSerialize: serialize_nano_AmountResponse,
+    responseDeserialize: deserialize_nano_AmountResponse,
+  },
+  receiveMinimumSet: {
+    path: '/nano.NanoRPC/ReceiveMinimumSet',
+    requestStream: false,
+    responseStream: false,
+    requestType: Conversion_pb.AmountRequest,
+    responseType: Bootstrap_pb.SuccessResponse,
+    requestSerialize: serialize_nano_AmountRequest,
+    requestDeserialize: deserialize_nano_AmountRequest,
+    responseSerialize: serialize_nano_SuccessResponse,
+    responseDeserialize: deserialize_nano_SuccessResponse,
+  },
 };
 
 exports.NanoRPCClient = grpc.makeGenericClientConstructor(NanoRPCService);

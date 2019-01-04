@@ -85,4 +85,6 @@ service NanoRPC {
   rpc Keepalive (KeepaliveRequest) returns (EmptyRequest);
   rpc NodeId (EmptyRequest) returns (KeyResponse);
   rpc NodeIdDelete (EmptyRequest) returns (SuccessResponse);
+  rpc ReceiveMinimum (EmptyRequest) returns (AmountResponse);
+  rpc ReceiveMinimumSet (AmountRequest) returns (SuccessResponse);
 }
