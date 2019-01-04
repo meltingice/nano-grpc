@@ -1,6 +1,10 @@
 const buildRpc = require("../lib/buildRpc");
 const buildMap = require("../lib/buildMap");
-const { KeyResponse, EmptyRequest } = require("../grpc/NanoService_pb");
+const {
+  KeyResponse,
+  EmptyRequest,
+  SuccessResponse
+} = require("../grpc/NanoService_pb");
 
 module.exports = client => ({
   deterministicKey: buildRpc(
@@ -33,5 +37,17 @@ module.exports = client => ({
     client,
     req => ({ action: "key_expand", key: req.getKey() }),
     data => new KeyResponse([data.private, data.public, data.account])
+  ),
+
+  nodeId: buildRpc(
+    client,
+    req => ({ action: "node_id" }),
+    data => new KeyResponse([data.private, data.public, data.as_account])
+  ),
+
+  nodeIdDelete: buildRpc(
+    client,
+    req => ({ action: "node_id_delete" }),
+    data => new SuccessResponse([data.deleted === "1" ? true : false])
   )
 });

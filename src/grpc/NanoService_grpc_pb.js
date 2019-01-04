@@ -1289,6 +1289,28 @@ var NanoRPCService = exports.NanoRPCService = {
     responseSerialize: serialize_nano_EmptyRequest,
     responseDeserialize: deserialize_nano_EmptyRequest,
   },
+  nodeId: {
+    path: '/nano.NanoRPC/NodeId',
+    requestStream: false,
+    responseStream: false,
+    requestType: Miscellaneous_pb.EmptyRequest,
+    responseType: Miscellaneous_pb.KeyResponse,
+    requestSerialize: serialize_nano_EmptyRequest,
+    requestDeserialize: deserialize_nano_EmptyRequest,
+    responseSerialize: serialize_nano_KeyResponse,
+    responseDeserialize: deserialize_nano_KeyResponse,
+  },
+  nodeIdDelete: {
+    path: '/nano.NanoRPC/NodeIdDelete',
+    requestStream: false,
+    responseStream: false,
+    requestType: Miscellaneous_pb.EmptyRequest,
+    responseType: Bootstrap_pb.SuccessResponse,
+    requestSerialize: serialize_nano_EmptyRequest,
+    requestDeserialize: deserialize_nano_EmptyRequest,
+    responseSerialize: serialize_nano_SuccessResponse,
+    responseDeserialize: deserialize_nano_SuccessResponse,
+  },
 };
 
 exports.NanoRPCClient = grpc.makeGenericClientConstructor(NanoRPCService);

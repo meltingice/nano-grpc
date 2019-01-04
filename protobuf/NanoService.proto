@@ -81,4 +81,6 @@ service NanoRPC {
   rpc KeyCreate (EmptyRequest) returns (KeyResponse);
   rpc KeyExpand (KeyRequest) returns (KeyResponse);
   rpc Keepalive (KeepaliveRequest) returns (EmptyRequest);
+  rpc NodeId (EmptyRequest) returns (KeyResponse);
+  rpc NodeIdDelete (EmptyRequest) returns (SuccessResponse);
 }
