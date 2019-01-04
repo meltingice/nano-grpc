@@ -145,14 +145,11 @@ module.exports = client => ({
       block.link_as_account = block.linkAsAccount;
       delete block.linkAsAccount;
 
-      const data = {
+      return {
         action: "process",
         block: JSON.stringify(block),
         force: req.getForce()
       };
-
-      console.log(data);
-      return data;
     },
     data => new BlockResponse([data.hash])
   )
