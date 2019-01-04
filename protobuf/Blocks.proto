@@ -106,3 +106,10 @@ message BlockProcessRequest {
   Block block = 1;
   bool force = 2;
 }
+
+message ReceiveRequest {
+  string wallet = 1;
+  string account = 2;
+  string block = 3;
+  string work = 4;
+}

@@ -152,5 +152,17 @@ module.exports = client => ({
       };
     },
     data => new BlockResponse([data.hash])
+  ),
+
+  receive: buildRpc(
+    client,
+    req => ({
+      action: "receive",
+      wallet: req.getWallet(),
+      account: req.getAccount(),
+      block: req.getBlock(),
+      work: req.getWork().length ? req.getWork() : undefined
+    }),
+    data => new BlockResponse([data.block])
   )
 });

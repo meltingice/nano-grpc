@@ -684,6 +684,17 @@ function deserialize_nano_PeersResponse(buffer_arg) {
   return Peers_pb.PeersResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_ReceiveRequest(arg) {
+  if (!(arg instanceof Blocks_pb.ReceiveRequest)) {
+    throw new Error('Expected argument of type nano.ReceiveRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_ReceiveRequest(buffer_arg) {
+  return Blocks_pb.ReceiveRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_nano_SuccessResponse(arg) {
   if (!(arg instanceof Bootstrap_pb.SuccessResponse)) {
     throw new Error('Expected argument of type nano.SuccessResponse');
@@ -1037,6 +1048,17 @@ var NanoRPCService = exports.NanoRPCService = {
     responseType: Blocks_pb.BlockResponse,
     requestSerialize: serialize_nano_BlockProcessRequest,
     requestDeserialize: deserialize_nano_BlockProcessRequest,
+    responseSerialize: serialize_nano_BlockResponse,
+    responseDeserialize: deserialize_nano_BlockResponse,
+  },
+  receive: {
+    path: '/nano.NanoRPC/Receive',
+    requestStream: false,
+    responseStream: false,
+    requestType: Blocks_pb.ReceiveRequest,
+    responseType: Blocks_pb.BlockResponse,
+    requestSerialize: serialize_nano_ReceiveRequest,
+    requestDeserialize: deserialize_nano_ReceiveRequest,
     responseSerialize: serialize_nano_BlockResponse,
     responseDeserialize: deserialize_nano_BlockResponse,
   },
