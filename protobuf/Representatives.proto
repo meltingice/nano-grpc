@@ -1,6 +1,11 @@
 syntax = "proto3";
 package nano;
 
+message RepresentativesRequest {
+  int32 count = 1;
+  bool sorting = 2;
+}
+
 message RepresentativesResponse {
   map<string, string> representatives = 1;
 }

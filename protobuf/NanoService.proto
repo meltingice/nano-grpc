@@ -80,7 +80,7 @@ service NanoRPC {
   rpc Peers (EmptyRequest) returns (PeersResponse);
 
   // Representatives
-  rpc Representatives (EmptyRequest) returns (RepresentativesResponse);
+  rpc Representatives (RepresentativesRequest) returns (RepresentativesResponse);
 
   // Miscellaneous
   rpc DeterministicKey (DeterministicKeyRequest) returns (KeyResponse);
