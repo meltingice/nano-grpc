@@ -7,7 +7,8 @@ const RESPONSES = [
   "delegators",
   "frontiers",
   "miscellaneous",
-  "peers"
+  "peers",
+  "representatives"
 ];
 
 module.exports = function(client) {

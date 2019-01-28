@@ -20,5 +20,6 @@ var Delegators_pb = require('./Delegators_pb.js');
 var Frontiers_pb = require('./Frontiers_pb.js');
 var Miscellaneous_pb = require('./Miscellaneous_pb.js');
 var Peers_pb = require('./Peers_pb.js');
+var Representatives_pb = require('./Representatives_pb.js');
 var Wallet_pb = require('./Wallet_pb.js');
 goog.object.extend(exports, proto.nano);

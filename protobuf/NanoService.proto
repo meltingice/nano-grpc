@@ -10,6 +10,7 @@ import 'Delegators.proto';
 import 'Frontiers.proto';
 import 'Miscellaneous.proto';
 import 'Peers.proto';
+import 'Representatives.proto';
 import 'Wallet.proto';
 
 service NanoRPC {
@@ -77,6 +78,9 @@ service NanoRPC {
 
   // Peers
   rpc Peers (EmptyRequest) returns (PeersResponse);
+
+  // Representatives
+  rpc Representatives (EmptyRequest) returns (RepresentativesResponse);
 
   // Miscellaneous
   rpc DeterministicKey (DeterministicKeyRequest) returns (KeyResponse);

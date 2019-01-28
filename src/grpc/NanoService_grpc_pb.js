@@ -11,6 +11,7 @@ var Delegators_pb = require('./Delegators_pb.js');
 var Frontiers_pb = require('./Frontiers_pb.js');
 var Miscellaneous_pb = require('./Miscellaneous_pb.js');
 var Peers_pb = require('./Peers_pb.js');
+var Representatives_pb = require('./Representatives_pb.js');
 var Wallet_pb = require('./Wallet_pb.js');
 
 function serialize_nano_AccountBalanceResponse(arg) {
@@ -695,6 +696,17 @@ function deserialize_nano_ReceiveRequest(buffer_arg) {
   return Blocks_pb.ReceiveRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_nano_RepresentativesResponse(arg) {
+  if (!(arg instanceof Representatives_pb.RepresentativesResponse)) {
+    throw new Error('Expected argument of type nano.RepresentativesResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_nano_RepresentativesResponse(buffer_arg) {
+  return Representatives_pb.RepresentativesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_nano_SuccessResponse(arg) {
   if (!(arg instanceof Bootstrap_pb.SuccessResponse)) {
     throw new Error('Expected argument of type nano.SuccessResponse');
@@ -1287,6 +1299,18 @@ var NanoRPCService = exports.NanoRPCService = {
     requestDeserialize: deserialize_nano_EmptyRequest,
     responseSerialize: serialize_nano_PeersResponse,
     responseDeserialize: deserialize_nano_PeersResponse,
+  },
+  // Representatives
+  representatives: {
+    path: '/nano.NanoRPC/Representatives',
+    requestStream: false,
+    responseStream: false,
+    requestType: Miscellaneous_pb.EmptyRequest,
+    responseType: Representatives_pb.RepresentativesResponse,
+    requestSerialize: serialize_nano_EmptyRequest,
+    requestDeserialize: deserialize_nano_EmptyRequest,
+    responseSerialize: serialize_nano_RepresentativesResponse,
+    responseDeserialize: deserialize_nano_RepresentativesResponse,
   },
   // Miscellaneous
   deterministicKey: {
