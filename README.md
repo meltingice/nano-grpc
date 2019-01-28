@@ -43,6 +43,6 @@ Options:
 
 ## Development
 
-If you make changes to any of the protobufs, the libraries for the server have to be recompiled with `npm run build`.
+If you make changes to any of the protobufs, the libraries for the server have to be recompiled with `npm run build` after they're modified.
 
 If you want to play around with the RPC, I highly recommend [BloomRPC](https://github.com/uw-labs/bloomrpc).
