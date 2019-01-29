@@ -1,6 +1,6 @@
 const buildRpc = require("../lib/buildRpc");
 const buildMap = require("../lib/buildMap");
-const { RepresentativesResponse } = require("../grpc/NanoService_pb");
+const { RepresentativesResponse, AccountsResponse } = require("../grpc/NanoService_pb");
 
 module.exports = client => ({
   representatives: buildRpc(
@@ -15,5 +15,11 @@ module.exports = client => ({
       buildMap(reply.getRepresentativesMap(), data.representatives, value => value);
       return reply
     }
+  ),
+
+  representativesOnline: buildRpc(
+    client,
+    () => ({ action: "representatives_online" }),
+    data => new AccountsResponse([data.representatives])
   )
 })

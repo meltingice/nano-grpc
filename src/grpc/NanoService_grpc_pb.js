@@ -1323,6 +1323,17 @@ var NanoRPCService = exports.NanoRPCService = {
     responseSerialize: serialize_nano_RepresentativesResponse,
     responseDeserialize: deserialize_nano_RepresentativesResponse,
   },
+  representativesOnline: {
+    path: '/nano.NanoRPC/RepresentativesOnline',
+    requestStream: false,
+    responseStream: false,
+    requestType: Miscellaneous_pb.EmptyRequest,
+    responseType: Accounts_pb.AccountsResponse,
+    requestSerialize: serialize_nano_EmptyRequest,
+    requestDeserialize: deserialize_nano_EmptyRequest,
+    responseSerialize: serialize_nano_AccountsResponse,
+    responseDeserialize: deserialize_nano_AccountsResponse,
+  },
   // Miscellaneous
   deterministicKey: {
     path: '/nano.NanoRPC/DeterministicKey',

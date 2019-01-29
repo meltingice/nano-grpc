@@ -81,6 +81,7 @@ service NanoRPC {
 
   // Representatives
   rpc Representatives (RepresentativesRequest) returns (RepresentativesResponse);
+  rpc RepresentativesOnline (EmptyRequest) returns (AccountsResponse);
 
   // Miscellaneous
   rpc DeterministicKey (DeterministicKeyRequest) returns (KeyResponse);
